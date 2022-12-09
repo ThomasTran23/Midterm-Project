@@ -1,16 +1,12 @@
-import java.util.*;
-import java.awt.*;
-import javax.swing.*;
-import java.util.Random;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Fish {
     private String name;
     private int health;
     private double attack;
     private double speed;
+    private String type;
     private int level;
-
     
     
     //  new Fish("Carp", 30, 5, 10)
@@ -41,6 +37,10 @@ public class Fish {
 
     public int getLevel(){
         return level;
+    }
+
+    public String getType(){
+        return type;
     }
 
     public void setName(String name){
