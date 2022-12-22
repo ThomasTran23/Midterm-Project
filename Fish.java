@@ -51,67 +51,67 @@ public class Fish {
 
         fishes.put(
             "Turtle(No Shell)",
-            new Fish("Turtle(No Shell)",50,5,5)
+            new Fish("Turtle(No Shell)",50,5,7)
             );
 
         fishes.put(
             "Squibi",
-            new Fish("Squibi",)
+            new Fish("Squibi",25,2,5)
             );
 
         fishes.put(
             "Squeed",
-            new Fish("Squeed",)
+            new Fish("Squeed",45,4,8)
             );
 
         fishes.put(
             "Octopus",
-            new Fish("Octopus",)
+            new Fish("Octopus",30,3,3)
             );
 
         fishes.put(
             "Blue Ring",
-            new Fish("Blue Ring",)
+            new Fish("Blue Ring",45,5,5)
             );
 
         fishes.put(
             "Hammerhead",
-            new Fish("Hammerhead",)
+            new Fish("Hammerhead"50,5,4)
             );
 
         fishes.put(
             "Hammerhead(Angry)",
-            new Fish("Hammerhead(Angry)",)
+            new Fish("Hammerhead(Angry)",75,8,5)
             );
 
         fishes.put(
             "Shark",
-            new Fish("Shark",)
+            new Fish("Shark",50,5,4)
             );
 
         fishes.put(
             "Shark(Angry)",
-            new Fish("Shark(Angry)",)
+            new Fish("Shark(Angry)",75,6,7)
             );
 
         fishes.put(
             "Orca",
-            new Fish("Orca",)
+            new Fish("Orca",50,6,3)
             );
 
         fishes.put(
             "Orca(Scary)",
-            new Fish("Orca(Scary)",)
+            new Fish("Orca(Scary)",80,7,5)
             );
 
         fishes.put(
             "Whale",
-            new Fish("Whale",)
+            new Fish("Whale",60,4,4)
             );
 
         fishes.put(
             "Whale(Scary)",
-            new Fish("Whale(Scary)",)
+            new Fish("Whale(Scary)",100,6,4)
             );
 
     }
