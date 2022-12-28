@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Fish {
     private String name;
@@ -12,6 +13,10 @@ public class Fish {
     //  new Fish("Carp", 30, 5, 10)
 
     private HashMap<String,Fish> fishes = new HashMap<String,Fish>();
+
+    public String[] fishArray = {"Hatchling","Blue Carp","Red Carp","Rainbow Carp","Jellyfish","Jellyfish(Scary)",
+    "Turtle(Shell)","Turtle(No Shell)","Squibi","Squeed","Octopus","Blue Ring","Hammerhead","Hammerhead(Angry)",
+    "Shark","Shark(Angry)","Orca","Orca(Scary)","Whale","Whale(Scary)",};
 
     private void fishes_init(){
         fishes.put(
