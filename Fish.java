@@ -1,5 +1,5 @@
 import java.util.HashMap;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 public class Fish {
     private String name;
@@ -11,9 +11,6 @@ public class Fish {
     private double scaledSpeed;
     private String type;
     private int level;
-    
-    
-    //  new Fish("Carp", 30, 5, 10)
 
     private HashMap<String,Fish> fishes = new HashMap<String,Fish>();
 
