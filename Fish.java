@@ -129,6 +129,11 @@ public class Fish {
         this.speed = speed;
     }
 
+    public Fish(int level){
+        this.fishes_init();
+        this = fishes.get()
+    }
+
     public String getName(){
         return name;
     }
