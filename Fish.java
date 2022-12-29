@@ -3,9 +3,12 @@ import java.util.ArrayList;
 
 public class Fish {
     private String name;
-    private int health;
+    private double health;
+    private double scaledHealth;
     private double attack;
+    private double scaledAttack;
     private double speed;
+    private double scaledSpeed;
     private String type;
     private int level;
     
@@ -14,9 +17,18 @@ public class Fish {
 
     private HashMap<String,Fish> fishes = new HashMap<String,Fish>();
 
-    public String[] fishArray = {"Hatchling","Blue Carp","Red Carp","Rainbow Carp","Jellyfish","Jellyfish(Scary)",
-    "Turtle(Shell)","Turtle(No Shell)","Squibi","Squeed","Octopus","Blue Ring","Hammerhead","Hammerhead(Angry)",
-    "Shark","Shark(Angry)","Orca","Orca(Scary)","Whale","Whale(Scary)",};
+    public String[] fishArray = {"Hatchling","Jellyfish","Turtle(Shell)","Squibi","Octopus",
+    "Blue Carp","Red Carp","Rainbow Carp","Jellyfish(Scary)",
+    "Turtle(No Shell)","Squeed","Blue Ring",
+    "Hammerhead","Shark","Orca","Whale",
+    "Hammerhead(Angry)","Shark(Angry)","Orca(Scary)","Whale(Scary)"};
+
+    public Fish(String name, int health, double attack, double speed){
+        this.name = name;
+        this.health = health;
+        this.attack = attack;
+        this.speed = speed;
+    }
 
     private void fishes_init(){
         fishes.put(
@@ -81,7 +93,7 @@ public class Fish {
 
         fishes.put(
             "Hammerhead",
-            new Fish("Hammerhead"50,5,4)
+            new Fish("Hammerhead",50,5,4)
             );
 
         fishes.put(
@@ -122,23 +134,45 @@ public class Fish {
     }
 
 
-    public Fish(String name, int health, double attack, double speed){
-        this.name = name;
-        this.health = health;
-        this.attack = attack;
-        this.speed = speed;
-    }
+    
 
     public Fish(int level){
         this.fishes_init();
-        this = fishes.get()
+        int base;
+        int cap;
+        if (level<=20){
+            base = 0;
+            cap = 5;
+        }else if(level<=40){
+            base = 5;
+            cap = 4;
+        }else if(level <=60){
+            base = 9;
+            cap = 3;
+        }else if(level <= 80){
+            base = 12;
+            cap = 4;
+        }else{
+            base = 16;
+            cap = 4;
+        }
+        Fish temp = fishes.get(fishArray[(int)(Math.random()*cap) + base]);
+
+        this.name = temp.name;
+        this.health = temp.health;
+        this.attack = temp.attack;
+        this.speed = temp.speed;
+
+        this.level = level;
+        
+        this.levelScale();
     }
 
     public String getName(){
         return name;
     }
     
-    public int getHealth(){
+    public double getHealth(){
         return health;
     }
 
@@ -158,23 +192,48 @@ public class Fish {
         return type;
     }
 
+    public double getScaledHealth(){
+        return scaledHealth;
+    }
+
+    public double getScaledAttack(){
+        return scaledAttack;
+    }
+    
+    public double getScaledSpeed(){
+        return scaledSpeed;
+    }
+
     public void setName(String name){
         this.name = name;
     }
 
     public void takeDamage(int damage){
-        this.health -= damage;
+        this.scaledHealth -= damage;
     }
 
     public void attackChange(int multiplier){
-        this.attack *= 1+ (multiplier/100);
+        this.scaledAttack *= 1+ (multiplier/100);
     }
 
     public void speedChange(int multiplier){
-        this.speed *= 1 + (multiplier/100);
+        this.scaledSpeed *= 1 + (multiplier/100);
     }
 
     public void levelUp(int level){
-        this.level += level;
+        if (this.level!=100){
+            if((this.level+level)<=100){
+                this.level += level;
+            } else if ((this.level + level)>100){
+                this.level = 100;
+            }
+        }
+        
+    }
+
+    public void levelScale(){
+        this.scaledHealth = health + (level*health/5);
+        this.scaledAttack = attack + (level*attack/8);
+        this.scaledSpeed = speed + (level*speed/10);
     }
 }

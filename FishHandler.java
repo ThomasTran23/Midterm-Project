@@ -7,11 +7,12 @@ import java.util.HashMap;
 import java.lang.Math;
 public class FishHandler {
 
+    private Fish fish;
+
     // private HashMap<String,Fish> fishes = new HashMap<String,Fish>();
     // private ArrayList<Fish> fishes = new ArrayList<Fish>();
-    public FishHandler(){
-        Fish f = new Fish();
-        for (Fish f: f.fishes.)
+    public FishHandler(Fish fish){
+        this.fish = fish;
     }
 
     
