@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.lang.Math;
 // import java.util.ArrayList;
 
 public class Fish {
@@ -159,6 +160,7 @@ public class Fish {
         this.health = temp.health;
         this.attack = temp.attack;
         this.speed = temp.speed;
+        this.type = temp.name;
 
         this.level = level;
         
@@ -205,8 +207,12 @@ public class Fish {
         this.name = name;
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(double damage){
         this.scaledHealth -= damage;
+    }
+
+    public void heal(double heal){
+        this.scaledHealth += heal;
     }
 
     public void attackChange(int multiplier){
@@ -229,8 +235,8 @@ public class Fish {
     }
 
     public void levelScale(){
-        this.scaledHealth = health + (level*health/5);
-        this.scaledAttack = attack + (level*attack/8);
-        this.scaledSpeed = speed + (level*speed/10);
+        this.scaledHealth = Math.floor((health + (level*health/5))*10)/10;
+        this.scaledAttack = Math.floor((attack + (level*attack/8))*10)/10;
+        this.scaledSpeed = Math.floor((speed + (level*speed/10))*10)/10;
     }
 }

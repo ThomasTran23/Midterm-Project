@@ -38,6 +38,7 @@ private String[] files;
 private Image[] allPics;
 private ArrayList<Image> pics;
 private Timer timer;
+private ArrayList<ImagePanel> tempPanels = new ArrayList<ImagePanel>();
 
 private static final String imageBase = "./NPC_images/";
 
@@ -122,6 +123,31 @@ public void createGUI() {
       setAlwaysOnTop(false);
   }
 
+  public void createImagePanel(){
+
+      Container contentPane = this.getContentPane();
+
+      imagePanel = new ImagePanel();
+      int width = 415;
+      int height = 480;
+      imagePanel.setPreferredSize(new Dimension(width, height));
+      imagePanel.setMinimumSize(new Dimension(width, height));
+      imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+      GridBagConstraints c = new GridBagConstraints();
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridx = 1;
+      c.gridy = 1;
+      contentPane.add(imagePanel,c);
+
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridwidth = 2;
+      c.gridx = 0;
+      c.gridy = 2;
+      c.ipady = 20;
+
+      tempPanels.add(imagePanel);
+  }
+
 private void setBackground() {
       Image backImage = createImage(base+"background.jpg", "");
       Border bkgrnd = new CentredBackgroundBorder(backImage);
@@ -180,6 +206,13 @@ public void setMessage(String message) {
       String current = textArea.getText();
       textArea.setText(current + "\n" + message);
       textArea.select(current.length(), (current.length() + message.length() + 1));
+  }
+
+  public void resetImagePanels(){
+    for (ImagePanel temp:tempPanels){
+      this.getContentPane().remove(temp);
+      tempPanels.remove(temp);
+    }
   }
 
 public class ImagePanel extends JPanel {
