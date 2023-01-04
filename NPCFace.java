@@ -83,8 +83,8 @@ public void createGUI() {
       setSize(new Dimension(WIDTH, HEIGHT));
       Container contentPane = this.getContentPane();
       contentPane.setLayout(new GridBagLayout());
-      Color bColor = Color.green.darker();
-      contentPane.setBackground(bColor);
+      // Color bColor = Color.green.darker();
+      // contentPane.setBackground(bColor);
   
      
       
@@ -123,36 +123,53 @@ public void createGUI() {
       setAlwaysOnTop(false);
   }
 
-  public void createImagePanel(){
+  public void createImagePanel(int w, int h, int x, int y){
 
       Container contentPane = this.getContentPane();
 
-      imagePanel = new ImagePanel();
-      int width = 415;
-      int height = 480;
-      imagePanel.setPreferredSize(new Dimension(width, height));
-      imagePanel.setMinimumSize(new Dimension(width, height));
-      imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+      ImagePanel temp = new ImagePanel();
+      // imagePanel = new ImagePanel();
+      // int width = 415;
+      // int height = 480;
+      // imagePanel.setPreferredSize(new Dimension(width, height));
+      // imagePanel.setMinimumSize(new Dimension(width, height));
+      // imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+      // GridBagConstraints c = new GridBagConstraints();
+      // c.fill = GridBagConstraints.HORIZONTAL;
+      // c.gridx = 1;
+      // c.gridy = 1;
+      // contentPane.add(imagePanel,c);
+
+      int width = w;
+      int height = h;
+      temp.setPreferredSize(new Dimension(width, height));
+      temp.setMinimumSize(new Dimension(width, height));
+      temp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
       GridBagConstraints c = new GridBagConstraints();
       c.fill = GridBagConstraints.HORIZONTAL;
-      c.gridx = 1;
-      c.gridy = 1;
-      contentPane.add(imagePanel,c);
+      c.gridx = x;
+      c.gridy = y;
+      contentPane.add(temp,c);
 
       c.fill = GridBagConstraints.HORIZONTAL;
       c.gridwidth = 2;
-      c.gridx = 0;
-      c.gridy = 2;
+      c.gridx = x;
+      c.gridy = y;
       c.ipady = 20;
 
-      tempPanels.add(imagePanel);
+      tempPanels.add(temp);
   }
 
-private void setBackground() {
-      Image backImage = createImage(base+"background.jpg", "");
-      Border bkgrnd = new CentredBackgroundBorder(backImage);
-      ((JComponent) getContentPane()).setBorder(bkgrnd);
+  public void setImagePanel(int panelNum, String mood){
+    ImagePanel panel = tempPanels.get(panelNum);
+    panel.paintComponent(getGraphics(), mood);
   }
+
+  private void setBackground() {
+    Image backImage = createImage(base+"background.jpg", "");
+    Border bkgrnd = new CentredBackgroundBorder(backImage);
+    ((JComponent) getContentPane()).setBorder(bkgrnd);
+}
 
 protected Image createImage(String path, String description) {
          return new ImageIcon(path, description).getImage();
@@ -172,7 +189,10 @@ public void actionPerformed(ActionEvent e) {
         loopslot = 0;
     }
 
-    imagePanel.repaint();
+    // imagePanel.repaint();
+    for (ImagePanel panel: tempPanels){
+      panel.repaint();
+    }
 
     if (loopslot == pics.size()) {
         timer.restart();
@@ -220,11 +240,22 @@ public class ImagePanel extends JPanel {
           super();
       }
 
-      public void paintComponent(Graphics g) {
+      public void paintComponent(Graphics g,String mood) {
           super.paintComponent(g);
-          if (pics.size() > 0) {
-              g.drawImage(pics.get(loopslot), 0, 0, this.getWidth(), this.getHeight(), null);
-          }
+          // if (pics.size() > 0) {
+          //     g.drawImage(pics.get(loopslot), 0, 0, this.getWidth(), this.getHeight(), null);
+          // }
+          Image path = null;
+          for (int i = 0; i < files.length; i++) {
+            if (files[i].startsWith("NPC_" + mood)) {
+                path = allPics[i];
+                
+            }
+        }
+        if (path == null){
+          System.err.println("image path is null");
+        }
+          g.drawImage(path ,0, 0, this.getWidth(), this.getHeight(), null);
       }
 
   }

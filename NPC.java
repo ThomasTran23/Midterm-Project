@@ -44,9 +44,10 @@ public class NPC {
 
 
     public NPC(){
-        face = new NPCFace();
+        // face = new NPCFace();
 
         face.popMessage("The Deep is calling.", "The Boatman");
+        // mainMenu();
     }
 
     public void mainMenu(){
@@ -54,7 +55,7 @@ public class NPC {
         if (s.equals(menu[0])){
             new Battle(playerFish.getLevel(),this);
         }else if (s.equals(menu[1])){
-            face.createImagePanel();
+            face.createImagePanel(100, 100, 50, 200);
             face.setImage(playerFish.getType());
             face.popMessage(
 
