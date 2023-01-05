@@ -36,6 +36,9 @@ public class Battle{
                 
             }
         }
+
+
+        
     }
 
     private void status_Effect(){
@@ -57,7 +60,13 @@ public class Battle{
     }
 
     private void playerMenu(){
-        String[] options = {"Attack","Items"};
+        String[] options = {"Attack","Items","Check Stats"};
+
+        int n = face.popConfirm("What would you like to do?", "Battle", options, yourFish.getName());
+
+        System.out.println(n);
         
+        playerMenu();
+
     }
 }
