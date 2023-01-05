@@ -10,6 +10,7 @@ public class Battle {
         this.yourFish = player.getFish();
         this.enemyFish = new Fish(level);
 
+        
     }
 
     private void status_Effect(){

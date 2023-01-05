@@ -174,7 +174,7 @@ public class Fish {
         this.speed = temp.speed;
         this.type = temp.name;
 
-        this.level = level;
+        this.level = level + (int)(Math.random()*10) - 5;
         
         this.levelScale();
     }
