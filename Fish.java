@@ -23,9 +23,21 @@ public class Fish {
 
     public Fish(String name, int health, double attack, double speed){
         this.name = name;
+        this.type = this.name;
         this.health = health;
         this.attack = attack;
         this.speed = speed;
+    }
+
+    public Fish(String name, int health, double attack, double speed,int level){
+        this.name = name;
+        this.type = name;
+        this.health = health;
+        this.attack = attack;
+        this.speed = speed;
+        this.level = level;
+
+        this.levelScale();
     }
 
     private void fishes_init(){

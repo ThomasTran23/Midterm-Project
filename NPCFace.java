@@ -24,12 +24,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.border.Border;
+import javax.swing.text.JTextComponent;
+import javax.swing.JTextField;
 
 public class NPCFace extends JFrame implements ActionListener{
 
-private final int WIDTH = 400;
-private final int HEIGHT = 400;
+private final int WIDTH = 1500; //400;
+private final int HEIGHT = 900; //400;
 private ImagePanel imagePanel;
 private JTextPane textArea;
 private String base;
@@ -68,7 +71,7 @@ public void init() {
       //timer.setInitialDelay(1000);
 
       getAllImages();
-      setBackground();
+      setBackground("");
       // setImage("angel");      
       // setMessage("Hello, and Welcome!");
       // popMessage("Beware the wares!", "Welcome");
@@ -165,8 +168,8 @@ public void createGUI() {
     panel.paintComponent(getGraphics(), mood);
   }
 
-  private void setBackground() {
-    Image backImage = createImage(base+"background.jpg", "");
+  public void setBackground(String type) {
+    Image backImage = createImage(base+type+"background.jpg", "");
     Border bkgrnd = new CentredBackgroundBorder(backImage);
     ((JComponent) getContentPane()).setBorder(bkgrnd);
 }
@@ -287,26 +290,56 @@ public void popMessage(String message,String title){
     JOptionPane.PLAIN_MESSAGE);
 }
 
-public int popConfirm(String message,String title, Object[] options){
+public int popConfirm(String message,String title, String[] options,String image){
+  Icon icon;
+  if (image!= null){
+    icon =  new ImageIcon(base + image +".jpg","");
+  }else{
+    icon = null;
+  }
+  
   int n = JOptionPane.showOptionDialog(new JFrame(),
     message,
     title,
     JOptionPane.YES_NO_CANCEL_OPTION,
     JOptionPane.QUESTION_MESSAGE,
-    null,
+    icon,
     options,
     options[1]);
   return n;
 }
-public String popOption(String message, String title, Object[] options){
+public String popOption(String message, String title, String[] options,String defaultString, String image){
+  Icon icon;
+  if (image!= null){
+    icon =  new ImageIcon(base + image +".jpg","");
+  }else{
+    icon = null;
+  }
+
   String s = (String)JOptionPane.showInputDialog(
   new JFrame(),
   message,
   title,
   JOptionPane.PLAIN_MESSAGE,
-  null,
+  icon,
   options,
-  "!Collect Flies");
+  defaultString);
+  return s;
+}
+
+public String popText(String message,String title, String defaultText, String errorMessage){
+String s = (String)JOptionPane.showInputDialog(
+  new JFrame(),
+  message, title
+  ,JOptionPane.PLAIN_MESSAGE,
+  null,
+  null,
+  defaultText);
+
+  if (s.equals("")|| s == null){
+    popMessage(errorMessage, "ERROR");
+    popText(message, title, defaultText, errorMessage);
+  }
   return s;
 }
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 // import java.util.HashMap;
 // import javax.swing.*;
 
@@ -34,7 +36,7 @@ public class NPC {
 
     NPCFace face;
     public Fish playerFish;
-    public String[] inventory;
+    public ArrayList<String> inventory = new ArrayList<String>();
 
     private String[] menu = {
         "Cast Line",
@@ -44,31 +46,47 @@ public class NPC {
 
 
     public NPC(){
-        // face = new NPCFace();
+        face = new NPCFace();
+
+        playerFish = new Fish("Hatchling", 30,1,3, 0);
 
         face.popMessage("The Deep is calling.", "The Boatman");
-        // mainMenu();
+
+        mainMenu();
     }
 
     public void mainMenu(){
-        String s = face.popOption("What would you like to do?","The Boatman",menu);
-        if (s.equals(menu[0])){
+        String s = face.popOption("What would you like to do?","The Boatman",menu,menu[0],null);
+        if (s == null){
+            mainMenu();
+        }else if (s.equals(menu[0])){
             new Battle(playerFish.getLevel(),this);
         }else if (s.equals(menu[1])){
-            face.createImagePanel(100, 100, 50, 200);
-            face.setImage(playerFish.getType());
-            face.popMessage(
+            final String[] options = {"Change Name","Exit","X"};
+            int n = face.popConfirm(
 
                 "\nLevel: " + playerFish.getLevel() +
                 "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + (playerFish.getScaledHealth() - playerFish.getHealth()) + ")" +
                 "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + (playerFish.getScaledAttack() - playerFish.getAttack()) + ")" +
                 "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + (playerFish.getScaledSpeed() - playerFish.getSpeed()) + ")"
                 
-                ,playerFish.getName()
+                ,playerFish.getName(),
+                options,
+                playerFish.getType()
+                
             );
-            face.resetImagePanels();
+            if (n == 0){
+                playerFish.setName(face.popText("What would you like to name you fish?", "Change Name", playerFish.getName(), "Cannot input null or empty string")); 
+            }
         }else if(s.equals(menu[2])){
-            //********************************************************************************************************************** CONTINUE HERE! MAKE INVENTORY/ITEMS VARIABLES AND METHODS**********************************************************************************************************************
+            String temp = "";
+            if (inventory.size()>0){
+                for (String item : inventory){
+                temp += item + "\n";
+                }
+            }
+            
+            face.popMessage(temp, "Your Items");
         }
         mainMenu();  
     }
