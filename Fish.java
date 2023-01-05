@@ -1,6 +1,6 @@
+// import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.Math;
-// import java.util.ArrayList;
 
 public class Fish {
     private String name;
@@ -14,6 +14,10 @@ public class Fish {
     private int level;
 
     private HashMap<String,Fish> fishes = new HashMap<String,Fish>();
+
+    private HashMap<String,Move[]> allMoves = new HashMap<String,Move[]>();
+
+    private Move[] moveList;
 
     public String[] fishArray = {"Hatchling","Jellyfish","Turtle(Shell)","Squibi","Octopus",
     "Blue Carp","Red Carp","Rainbow Carp","Jellyfish(Scary)",
@@ -38,6 +42,8 @@ public class Fish {
         this.level = level;
 
         this.levelScale();
+
+        this.moveList = allMoves.get(this.type);
     }
 
     private void fishes_init(){
@@ -141,6 +147,8 @@ public class Fish {
             new Fish("Whale(Scary)",100,6,4)
             );
 
+
+            
     }
 
 
@@ -213,6 +221,10 @@ public class Fish {
     
     public double getScaledSpeed(){
         return scaledSpeed;
+    }
+
+    public Move[] getMoveList(){
+        return moveList;
     }
 
     public void setName(String name){

@@ -7,10 +7,12 @@ public class Move {
     private boolean status = false;
     private int statusType;
 
-    public Move(String name, double damage, int accuracy){
+    public Move(String name, double damage, int accuracy, boolean status, int statusType){
         this.name = name;
         this.damage = damage;
         this.accuracy = accuracy;
+        this.status = status;
+        this.statusType = statusType;
     }
 
     public Move(String name, int multiplier, int accuracy, int stat){

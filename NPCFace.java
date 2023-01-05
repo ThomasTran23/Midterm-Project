@@ -41,7 +41,7 @@ private String[] files;
 private Image[] allPics;
 private ArrayList<Image> pics;
 private Timer timer;
-private ArrayList<ImagePanel> tempPanels = new ArrayList<ImagePanel>();
+// private ArrayList<ImagePanel> tempPanels = new ArrayList<ImagePanel>();
 
 private static final String imageBase = "./NPC_images/";
 
@@ -91,33 +91,33 @@ public void createGUI() {
   
      
       
-    //   imagePanel = new ImagePanel();
-    //   int width = 415;
-    //   int height = 480;
-    //   imagePanel.setPreferredSize(new Dimension(width, height));
-    //   imagePanel.setMinimumSize(new Dimension(width, height));
-    //   imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-    //   GridBagConstraints c = new GridBagConstraints();
-    //   c.fill = GridBagConstraints.HORIZONTAL;
-    //   c.gridx = 1;
-    //   c.gridy = 1;
-    //   contentPane.add(imagePanel,c);
+      imagePanel = new ImagePanel();
+      int width = 415;
+      int height = 480;
+      imagePanel.setPreferredSize(new Dimension(width, height));
+      imagePanel.setMinimumSize(new Dimension(width, height));
+      imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+      GridBagConstraints c = new GridBagConstraints();
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridx = 1;
+      c.gridy = 1;
+      contentPane.add(imagePanel,c);
       
-    //   textArea = new JTextPane();
-    //   textArea.setEditable(false);
-    //   JScrollPane scroll = new JScrollPane(textArea);
-    //   scroll.setPreferredSize(new Dimension(width, height/2));
-    //   scroll.setSize(new Dimension(width, height/2));
-    //   textArea.setPreferredSize(new Dimension(width, height/2));
-    //   textArea.setSize(new Dimension(width, height/2));
+      textArea = new JTextPane();
+      textArea.setEditable(false);
+      JScrollPane scroll = new JScrollPane(textArea);
+      scroll.setPreferredSize(new Dimension(width, height/2));
+      scroll.setSize(new Dimension(width, height/2));
+      textArea.setPreferredSize(new Dimension(width, height/2));
+      textArea.setSize(new Dimension(width, height/2));
 
 
-    //   c.fill = GridBagConstraints.HORIZONTAL;
-    //   c.gridwidth = 2;
-    //   c.gridx = 0;
-    //   c.gridy = 2;
-    //   c.ipady = 20;
-      // contentPane.add(scroll, c);
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.gridwidth = 2;
+      c.gridx = 0;
+      c.gridy = 2;
+      c.ipady = 20;
+      contentPane.add(scroll, c);
   
       setLocationRelativeTo(null);
       setVisible(true);
@@ -126,47 +126,47 @@ public void createGUI() {
       setAlwaysOnTop(false);
   }
 
-  public void createImagePanel(int w, int h, int x, int y){
+  // public void createImagePanel(int w, int h, int x, int y){
 
-      Container contentPane = this.getContentPane();
+  //     Container contentPane = this.getContentPane();
 
-      ImagePanel temp = new ImagePanel();
-      // imagePanel = new ImagePanel();
-      // int width = 415;
-      // int height = 480;
-      // imagePanel.setPreferredSize(new Dimension(width, height));
-      // imagePanel.setMinimumSize(new Dimension(width, height));
-      // imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-      // GridBagConstraints c = new GridBagConstraints();
-      // c.fill = GridBagConstraints.HORIZONTAL;
-      // c.gridx = 1;
-      // c.gridy = 1;
-      // contentPane.add(imagePanel,c);
+  //     ImagePanel temp = new ImagePanel();
+  //     // imagePanel = new ImagePanel();
+  //     // int width = 415;
+  //     // int height = 480;
+  //     // imagePanel.setPreferredSize(new Dimension(width, height));
+  //     // imagePanel.setMinimumSize(new Dimension(width, height));
+  //     // imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+  //     // GridBagConstraints c = new GridBagConstraints();
+  //     // c.fill = GridBagConstraints.HORIZONTAL;
+  //     // c.gridx = 1;
+  //     // c.gridy = 1;
+  //     // contentPane.add(imagePanel,c);
 
-      int width = w;
-      int height = h;
-      temp.setPreferredSize(new Dimension(width, height));
-      temp.setMinimumSize(new Dimension(width, height));
-      temp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-      GridBagConstraints c = new GridBagConstraints();
-      c.fill = GridBagConstraints.HORIZONTAL;
-      c.gridx = x;
-      c.gridy = y;
-      contentPane.add(temp,c);
+  //     int width = w;
+  //     int height = h;
+  //     temp.setPreferredSize(new Dimension(width, height));
+  //     temp.setMinimumSize(new Dimension(width, height));
+  //     temp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+  //     GridBagConstraints c = new GridBagConstraints();
+  //     c.fill = GridBagConstraints.HORIZONTAL;
+  //     c.gridx = x;
+  //     c.gridy = y;
+  //     contentPane.add(temp,c);
 
-      c.fill = GridBagConstraints.HORIZONTAL;
-      c.gridwidth = 2;
-      c.gridx = x;
-      c.gridy = y;
-      c.ipady = 20;
+  //     c.fill = GridBagConstraints.HORIZONTAL;
+  //     c.gridwidth = 2;
+  //     c.gridx = x;
+  //     c.gridy = y;
+  //     c.ipady = 20;
 
-      tempPanels.add(temp);
-  }
+  //     tempPanels.add(temp);
+  // }
 
-  public void setImagePanel(int panelNum, String mood){
-    ImagePanel panel = tempPanels.get(panelNum);
-    panel.paintComponent(getGraphics(), mood);
-  }
+  // public void setImagePanel(int panelNum, String mood){
+  //   ImagePanel panel = tempPanels.get(panelNum);
+  //   panel.paintComponent(getGraphics(), mood);
+  // }
 
   public void setBackground(String type) {
     Image backImage = createImage(base+type+"background.jpg", "");
@@ -192,10 +192,7 @@ public void actionPerformed(ActionEvent e) {
         loopslot = 0;
     }
 
-    // imagePanel.repaint();
-    for (ImagePanel panel: tempPanels){
-      panel.repaint();
-    }
+    imagePanel.repaint();
 
     if (loopslot == pics.size()) {
         timer.restart();
@@ -218,7 +215,7 @@ public void getAllImages() {
 public void getImages(final String mood) {
   
       for (int i = 0; i < files.length; i++) {
-          if (files[i].startsWith("NPC_" + mood)) {
+          if (files[i].startsWith(/*"NPC_" +*/ mood)) {
               pics.add(allPics[i]);
           }
       }
@@ -231,35 +228,24 @@ public void setMessage(String message) {
       textArea.select(current.length(), (current.length() + message.length() + 1));
   }
 
-  public void resetImagePanels(){
-    for (ImagePanel temp:tempPanels){
-      this.getContentPane().remove(temp);
-      tempPanels.remove(temp);
+  // public void resetImagePanels(){
+  //   for (ImagePanel temp:tempPanels){
+  //     this.getContentPane().remove(temp);
+  //     tempPanels.remove(temp);
+  //   }
+  // }
+
+  public class ImagePanel extends JPanel {
+    public ImagePanel( ) {
+        super();
     }
-  }
 
-public class ImagePanel extends JPanel {
-      public ImagePanel( ) {
-          super();
-      }
-
-      public void paintComponent(Graphics g,String mood) {
-          super.paintComponent(g);
-          // if (pics.size() > 0) {
-          //     g.drawImage(pics.get(loopslot), 0, 0, this.getWidth(), this.getHeight(), null);
-          // }
-          Image path = null;
-          for (int i = 0; i < files.length; i++) {
-            if (files[i].startsWith("NPC_" + mood)) {
-                path = allPics[i];
-                
-            }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (pics.size() > 0) {
+            g.drawImage(pics.get(loopslot), 0, 0, this.getWidth(), this.getHeight(), null);
         }
-        if (path == null){
-          System.err.println("image path is null");
-        }
-          g.drawImage(path ,0, 0, this.getWidth(), this.getHeight(), null);
-      }
+    }
 
   }
 

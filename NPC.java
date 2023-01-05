@@ -48,6 +48,8 @@ public class NPC {
     public NPC(){
         face = new NPCFace();
 
+        face.setImage("fisherman");
+
         playerFish = new Fish("Hatchling", 30,1,3, 0);
 
         face.popMessage("The Deep is calling.", "The Boatman");
@@ -60,6 +62,7 @@ public class NPC {
         if (s == null){
             mainMenu();
         }else if (s.equals(menu[0])){
+
             new Battle(playerFish.getLevel(),this);
         }else if (s.equals(menu[1])){
             final String[] options = {"Change Name","Exit","X"};
