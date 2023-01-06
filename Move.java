@@ -5,18 +5,20 @@ public class Move {
     private int multiplier;
     private int stat;
     private boolean status = false;
-    private int statusType;
+    private int stunChance;
     private String description;
+    private boolean target;
 
-    public Move(String name, double damage, int accuracy, int multiplier, int stat, boolean status, int statusType, String description){
+    public Move(String name, double damage, int accuracy, int multiplier, int stat, boolean status, int stunChance, String description,boolean target){
         this.name = name;
         this.damage = damage;
         this.accuracy = accuracy;
         this.multiplier = multiplier;
         this.stat = stat;
         this.status = status;
-        this.statusType = statusType;
+        this.stunChance = stunChance;
         this.description = description;
+        this.target = target;
     }
 
     public String getName(){
@@ -39,8 +41,8 @@ public class Move {
         return status;
     }
 
-    public int getStatusType(){
-        return statusType;
+    public int getstunChance(){
+        return stunChance;
     }
 
     public int getStat(){
@@ -49,6 +51,10 @@ public class Move {
 
     public String getDescription(){
         return description;
+    }
+
+    public boolean getTarget(){
+        return target;
     }
 
 }

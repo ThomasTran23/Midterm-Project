@@ -173,6 +173,9 @@ public void createGUI() {
     Border bkgrnd = new CentredBackgroundBorder(backImage);
     ((JComponent) getContentPane()).setBorder(bkgrnd);
 }
+public void togglePanel(boolean toggle){
+  imagePanel.setVisible(toggle);
+}
 
 protected Image createImage(String path, String description) {
          return new ImageIcon(path, description).getImage();

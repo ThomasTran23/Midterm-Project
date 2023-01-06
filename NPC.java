@@ -15,7 +15,7 @@ public class NPC {
     public NPC(){
         face = new NPCFace();
 
-        playerFish = new Fish("Hatchling", 30,1,3, 0);
+        playerFish = new Fish("Hatchling", 30,1,3,0);
 
         inventory.add("Pellet");
 
@@ -35,8 +35,10 @@ public class NPC {
         "View Items"
         };
 
-        face.setImage("fisherman");
-        face.setBackground("");
+        // face.setImage("fisherman");
+        // face.setBackground("");
+
+        face.togglePanel(false);
 
         playerFish.levelScale();
 
@@ -232,8 +234,11 @@ public class NPC {
         // }else{
         //     statusEffect(move, target);
         // }
+        if (move.getTarget()){
+            target = user;
+        }
         String message = "";
-        if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()/3||move.getAccuracy()>200){
+        if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()/3||move.getAccuracy()>=200){
             if (move.getDamage()>0){
                 target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/100)) );
 
