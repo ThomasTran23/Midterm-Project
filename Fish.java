@@ -242,6 +242,7 @@ public class Fish {
             this.scaledHealth += heal;
         }
         
+        
     }
 
     public void attackChange(int multiplier){
@@ -258,6 +259,20 @@ public class Fish {
                 this.level += level;
             } else if ((this.level + level)>100){
                 this.level = 100;
+            }
+        }
+
+
+        int index=0;
+        
+        for (int i = 0;i<fishArray.length;i++){
+            if (fishArray[i]==this.type){
+                index = i;
+            }
+        }
+        if (index <= 4){
+            if (this.level>=30){
+                 = fishes[fishArray[i+4]];
             }
         }
         
