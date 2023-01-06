@@ -203,7 +203,7 @@ public class NPC {
         playerFish.getType());
 
         for(Move m: playerFish.getMoveList()){
-            if (m.getName() == s){
+            if (m.getName().equals(s)){
                 processMove(m, enemyFish,playerFish);
                 break;
             }
@@ -274,40 +274,40 @@ public class NPC {
     }
 
     private void itemMenu(){
-        String[] temp = allItems;
+        String[] temp = {"Pellet","Big Pellet","Bait","Smelly Bait","Fear Pheromone","Nightmare Pheromone"};
         for (int i = 0; i<temp.length;i++){
             temp[i] = allItems[i] + "x" + Collections.frequency(inventory, allItems[i]);
         }
         String result = face.popOption("Pick an item", "Item Menu", temp, temp[0], null);
-        System.out.println(result);
+
         String s = result.substring(0,result.indexOf("x"));
-        System.out.println(s);
+
         if (Collections.frequency(inventory, s)>0){
-            System.out.println("in inventory");
+
             if (s.equals(allItems[0])){
                 playerFish.heal(20.0);
                 face.popMessage(playerFish.getName() +"'s health increased by 20!", s);
-                System.out.println("pellet used");
+
             }else if (s.equals(allItems[1])){
                 playerFish.heal(100.0);
                 face.popMessage(playerFish.getName() +"'s health increased by 100!", s);
-                System.out.println("bait used");
+
             }else if (s.equals(allItems[2])){
                 playerFish.attackChange(10);
                 face.popMessage(playerFish.getName() +"'s attack increased by 10 percent!", s);
-                System.out.println("fear used");
+
             }else if (s.equals(allItems[3])){
                 playerFish.attackChange(50);
                 face.popMessage(playerFish.getName() +"'s attack increased by 50 percent!", s);
-                System.out.println("big used");
+
             }else if (s.equals(allItems[4])){
                 playerFish.speedChange(5);
                 face.popMessage(playerFish.getName() +"'s speed increased by 5 percent!", s);
-                System.out.println("smelly used");
+
             }else if (s.equals(allItems[5])){
                 playerFish.speedChange(25);
                 face.popMessage(playerFish.getName() +"'s speed increased by 25 percent!", s);
-                System.out.println("nightmare used");
+
             }
         }
         inventory.remove(s);
