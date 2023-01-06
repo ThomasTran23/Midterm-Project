@@ -236,7 +236,12 @@ public class Fish {
     }
 
     public void heal(double heal){
-        this.scaledHealth += heal;
+        if (scaledHealth+heal>=Math.floor((health + (level*health/5))*10)/10){
+            scaledHealth = Math.floor((health + (level*health/5))*10)/10;
+        }else{
+            this.scaledHealth += heal;
+        }
+        
     }
 
     public void attackChange(int multiplier){

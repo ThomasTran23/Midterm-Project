@@ -6,27 +6,17 @@ public class Move {
     private int stat;
     private boolean status = false;
     private int statusType;
+    private String description;
 
-    public Move(String name, double damage, int accuracy, boolean status, int statusType){
+    public Move(String name, double damage, int accuracy, int multiplier, int stat, boolean status, int statusType, String description){
         this.name = name;
         this.damage = damage;
         this.accuracy = accuracy;
-        this.status = status;
-        this.statusType = statusType;
-    }
-
-    public Move(String name, int multiplier, int accuracy, int stat){
-        this.name = name;
         this.multiplier = multiplier;
-        this.accuracy = accuracy;
         this.stat = stat;
-    }
-
-    public Move(String name, boolean status, int statusType, int accuracy){
-        this.name = name;
         this.status = status;
         this.statusType = statusType;
-        this.accuracy = accuracy;
+        this.description = description;
     }
 
     public String getName(){
@@ -55,6 +45,10 @@ public class Move {
 
     public int getStat(){
         return stat;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
 }
