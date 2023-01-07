@@ -212,7 +212,7 @@ public void getAllImages() {
       //System.err.println(pics.size());
   }
 
-public void getImages(final String mood) {
+public void getImagesAnim(final String mood) {
   
       for (int i = 0; i < files.length; i++) {
           if (files[i].startsWith(/*"NPC_" +*/ mood)) {
@@ -221,6 +221,17 @@ public void getImages(final String mood) {
       }
       //System.err.println(pics.size());
   }
+
+  public void getImages(final String mood) {
+  
+    for (int i = 0; i < files.length; i++) {
+        if (files[i].equals(/*"NPC_" +*/ mood + ".jpg")) {
+            pics.add(allPics[i]);
+        }
+    }
+    //System.err.println(pics.size());
+}
+
 
 public void setMessage(String message) {
       String current = textArea.getText();
