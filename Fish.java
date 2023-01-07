@@ -1,4 +1,4 @@
-// import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.lang.Math;
@@ -187,7 +187,7 @@ public class Fish {
      
         allMoves.put("Jellyfish", jellyMoves); 
         
-     Move[] jellysMoves =  {new Move("sting", 10.0, 60, 0, 0, true, 30, "Scary Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
+     Move[] jellysMoves =  {new Move("Sting", 10.0, 60, 0, 0, true, 30, "Scary Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
         new Move("Whip", 5.0, 200, 0, 0, false, 0, "Scary Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
         new Move("Regneration", -15.0, 201, 0, 0, false, 1, "Scary Jelly regrows it's broken tentacles, healing a small ammount of HP", true),
         new Move("poison", 50.0, 20, 0, 0, false, 1, "Scary Jelly clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false)};
@@ -208,11 +208,13 @@ public class Fish {
      allMoves.put("Turtle(NoShell)", nshellMoves); 
 
           Move[] squibiMoves =  {new Move("Slap", 10.0, 70, 0, 0, true, 30, "The small squid slaps the target with its tentacles, dealing medium damage", false),
-        new Move("squirt", 5.0, 201, 0, 0, false, 0, "The small squid shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false),
-        new Move("Camouflage", 30.0, 70, 10, 1, false, 1, "The small squid camouflages itself, making it harder to hit", true),
-        new Move("whip", 5.0, 200, 0, 0, false, 1, "The small squid whips the target with its tentacles, dealing small damge with high precision", false)};
+        new Move("Squirt", 5.0, 201, 0, 0, false, 0, "The small squid shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false),
+        new Move("Camouflage", 0, 70, 10, 1, false, 1, "The small squid camouflages itself, making it harder to hit", true),
+        new Move("Whip", 5.0, 200, 0, 0, false, 1, "The small squid whips the target with its tentacles, dealing small damge with high precision", false)};
      
      allMoves.put("Squibi", squibiMoves); 
+
+     
     }
 
 
@@ -320,14 +322,15 @@ public class Fish {
         this.scaledSpeed *= 1 + (multiplier/100);
     }
 
-    public void levelUp(int level){
+    public boolean levelUp(int level){
         if (this.level!=100){
             if((this.level+level)<=100){
                 this.level += level;
             } else if ((this.level + level)>100){
                 this.level = 100;
             }
-        }  
+        }
+        return level>=threshold&&!evolved;
     }
 
     public void levelScale(){
@@ -336,7 +339,14 @@ public class Fish {
         this.scaledSpeed = Math.floor((speed + (level*speed/10))*10)/10;
     }
 
-    public void evolve(){
-        
+    public Fish evolve(){
+        ArrayList<Fish> evolutions = new ArrayList<Fish>();
+        for (String s: fishArray){
+            if (this.type.equals(s.substring(0,type.length()))){
+                evolutions.add(fishes.get(s));
+            }
+        }
+        return evolutions.get((int)(Math.random()*evolutions.size()));
+
     }
 }

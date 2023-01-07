@@ -178,8 +178,13 @@ public class NPC {
                 face.popMessage(num + num>0?item +"s":item + "recieved", "Item obtained!");
                 
             }else if(n == 2){
-                playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?2 + enemyFish.getLevel():3);
+                if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?2 + enemyFish.getLevel():3)){
+                    playerFish.evolve();
+                }
             }
+        }else{
+            String[] losses = {playerFish.getName() + " looks up at you disappointedly.", playerFish.getName() + " shat itself."};
+            face.popMessage(losses[(int)(Math.random()*losses.length)], "Defeat");
         }
 
         turn = true;
@@ -246,9 +251,9 @@ public class NPC {
         String message = "";
         if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()/3||move.getAccuracy()>=200){
             if (move.getDamage()>0){
-                target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/100)) );
+                target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/100)));
 
-            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() + " damage. They're now at " + target.getScaledHealth() + " health.";
+            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/100)) + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
             
             if(move.getMultiplier()>0){
@@ -293,6 +298,7 @@ public class NPC {
 
         if (result == null){
             playerMenu();
+            return;
         }
 
         String s = result.substring(0,result.indexOf("x"));
