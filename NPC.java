@@ -35,10 +35,10 @@ public class NPC {
         "View Items"
         };
 
-        // face.setImage("fisherman");
-        // face.setBackground("");
+        face.setImage("fisherman");
+        face.setBackground("");
 
-        // face.togglePanel(false);
+        
 
         playerFish.levelScale();
 

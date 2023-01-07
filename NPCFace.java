@@ -103,13 +103,13 @@ public void createGUI() {
       c.gridy = 1;
       contentPane.add(imagePanel,c);
       
-      textArea = new JTextPane();
-      textArea.setEditable(false);
-      JScrollPane scroll = new JScrollPane(textArea);
-      scroll.setPreferredSize(new Dimension(width, height/2));
-      scroll.setSize(new Dimension(width, height/2));
-      textArea.setPreferredSize(new Dimension(width, height/2));
-      textArea.setSize(new Dimension(width, height/2));
+      // textArea = new JTextPane();
+      // textArea.setEditable(false);
+      // JScrollPane scroll = new JScrollPane(textArea);
+      // scroll.setPreferredSize(new Dimension(width, height/2));
+      // scroll.setSize(new Dimension(width, height/2));
+      // textArea.setPreferredSize(new Dimension(width, height/2));
+      // textArea.setSize(new Dimension(width, height/2));
 
 
       c.fill = GridBagConstraints.HORIZONTAL;
@@ -117,11 +117,11 @@ public void createGUI() {
       c.gridx = 0;
       c.gridy = 2;
       c.ipady = 20;
-      contentPane.add(scroll, c);
+      // contentPane.add(scroll, c);
   
       setLocationRelativeTo(null);
       setVisible(true);
-      //toFront();
+      // toFront();
       setAlwaysOnTop(true);
       setAlwaysOnTop(false);
   }
@@ -172,9 +172,6 @@ public void createGUI() {
     Image backImage = createImage(base+type+"background.jpg", "");
     Border bkgrnd = new CentredBackgroundBorder(backImage);
     ((JComponent) getContentPane()).setBorder(bkgrnd);
-}
-public void togglePanel(boolean toggle){
-  imagePanel.setVisible(toggle);
 }
 
 protected Image createImage(String path, String description) {
