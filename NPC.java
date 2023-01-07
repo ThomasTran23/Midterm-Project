@@ -113,6 +113,7 @@ public class NPC {
         this.enemyFish = new Fish(level);
 
         face.setBackground("battle_");
+        face.setImage(enemyFish.getType());
 
         active = true;
         System.out.println(enemyFish.getName());
@@ -128,8 +129,8 @@ public class NPC {
             }else if (skip){
                 skip = !skip;
             }else if (!eskip){
-                // processMove(enemyFish.getMoveList()[(int)(Math.random()*4)], playerFish,enemyFish);
-                System.out.println("enemy turn");
+                face.popMessage(processMove(enemyFish.getMoveList()[(int)(Math.random()*4)], playerFish,enemyFish),"Enemy");
+                // System.out.println("enemy turn");
                 turn = !turn;
             }else if (eskip){
                 eskip = !eskip;
@@ -204,9 +205,13 @@ public class NPC {
         null,
         playerFish.getType());
 
+        if (s == null){
+            playerMenu();
+        }
+
         for(Move m: playerFish.getMoveList()){
             if (m.getName().equals(s)){
-                processMove(m, enemyFish,playerFish);
+                face.popMessage(processMove(m, enemyFish,playerFish), s);
                 break;
             }
         }
@@ -223,6 +228,7 @@ public class NPC {
             attackMenu();
         }else{
             this.viewStats();
+            playerMenu();
         }
     }
 
@@ -242,7 +248,7 @@ public class NPC {
             if (move.getDamage()>0){
                 target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/100)) );
 
-            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() + " damage. They're now at " + target.getHealth() + " health.";
+            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
             
             if(move.getMultiplier()>0){
@@ -284,6 +290,10 @@ public class NPC {
             temp[i] = allItems[i] + "x" + Collections.frequency(inventory, allItems[i]);
         }
         String result = face.popOption("Pick an item", "Item Menu", temp, temp[0], null);
+
+        if (result == null){
+            playerMenu();
+        }
 
         String s = result.substring(0,result.indexOf("x"));
 

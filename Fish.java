@@ -1,8 +1,6 @@
 // import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.w3c.dom.events.Event;
-
 import java.lang.Math;
 
 public class Fish {
@@ -31,7 +29,7 @@ public class Fish {
     "Hammerhead(Angry)","Shark(Angry)","Orca(Scary)","Whale(Scary)"};
 
     public Fish(String name, int health, double attack, double speed,boolean evolved){
-        fishes_init();
+        moves_init();
         this.name = name;
         this.type = this.name;
         this.health = health;
@@ -48,12 +46,13 @@ public class Fish {
     }
 
     public Fish(String name, int health, double attack, double speed,int level){
-        fishes_init();
+        moves_init();
         this.name = name;
         this.type = name;
         this.health = health;
         this.attack = attack;
         this.speed = speed;
+        this.evolved = false;
         this.level = level;
 
         this.threshold = level + (int)(Math.random()*20) + 10;
@@ -169,47 +168,51 @@ public class Fish {
             new Fish("Whale(Scary)",100,6,4,true)
             );
 
-            Move[] hatchMoves = {new Move("Nibble", 10.0, 70, 0, 0, false, 1, "Hatchling nibbles the target dealing a small ammount of damage", false),
-            new Move("Flop", 0.0, 60, -5, 0, false, 1, "Hatchling flops around, looking harmless. The target feels less motivated to do damage. ", false),
-            new Move("Splash", 15.0, 40, 0, 0, false, 1, "The hatchling tries to splash the target with its tail, doing a bit of damage and looking cute as a button", false),
-            new Move("Squirt", 2.0, 201, 0, 0, false, 1, "The hatchling shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false)};
+    }
 
-        allMoves.put("Hatchling", hatchMoves);
+    public void moves_init(){
+        
+        Move[] hatchMoves = {new Move("Nibble", 10.0, 70, 0, 0, false, 1, "Hatchling nibbles the target dealing a small ammount of damage", false),
+        new Move("Flop", 0.0, 60, -5, 0, false, 1, "Hatchling flops around, looking harmless. The target feels less motivated to do damage. ", false),
+        new Move("Splash", 15.0, 40, 0, 0, false, 1, "The hatchling tries to splash the target with its tail, doing a bit of damage and looking cute as a button", false),
+        new Move("Squirt", 2.0, 201, 0, 0, false, 1, "The hatchling shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false)};
 
-       
-           Move[] jellyMoves =  {new Move("Sting", 10.0, 60, 0, 0, true, 30, "Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
-            new Move("Whip", 5.0, 200, 0, 0, false, 0, "Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
-            new Move("Regenerate", -15.0, 201, 0, 0, false, 1, "Jelly regrows it's broken tentacles, healing a small ammount of HP", true),
-            new Move("Splash", 15.0, 40, 0, 0, false, 1, "Jelly tries to splash the target with its tentacles, doing a bit of damage and looking cute as a button", false)};
-         
-            allMoves.put("Jellyfish", jellyMoves); 
-            
-         Move[] jellysMoves =  {new Move("sting", 10.0, 60, 0, 0, true, 30, "Scary Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
-            new Move("Whip", 5.0, 200, 0, 0, false, 0, "Scary Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
-            new Move("Regneration", -15.0, 201, 0, 0, false, 1, "Scary Jelly regrows it's broken tentacles, healing a small ammount of HP", true),
-            new Move("poison", 50.0, 20, 0, 0, false, 1, "Scary Jelly clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false)};
-         
-         allMoves.put("Jellyfish(Scary)", jellysMoves); 
-                  Move[] shellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The shelled turtle eats some seagrass and heals some HP", true),
-            new Move("Bonk", 25.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
-            new Move("Spin", 0.0, 201, 5, 1, false, 1, "The shelled turtle spins in a circle, feeling quicker than before", true),
-            new Move("Punch", 15.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
-         
-         allMoves.put("Turtle(Shell)", shellMoves); 
+    allMoves.put("Hatchling", hatchMoves);
 
-             Move[] nshellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The turtle eats some seagrass and heals some HP", true),
-            new Move("Bonk", 25.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
-            new Move("Chomp", 30.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
-            new Move("Punch", 15.0, 60, -15, 0, false, 1, "The turtle hides in it's shell, the target does less damage now", false)};
-         
-         allMoves.put("Turtle(NoShell)", nshellMoves); 
+   
+       Move[] jellyMoves =  {new Move("Sting", 10.0, 60, 0, 0, true, 30, "Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
+        new Move("Whip", 5.0, 200, 0, 0, false, 0, "Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
+        new Move("Regenerate", -15.0, 201, 0, 0, false, 1, "Jelly regrows it's broken tentacles, healing a small ammount of HP", true),
+        new Move("Splash", 15.0, 40, 0, 0, false, 1, "Jelly tries to splash the target with its tentacles, doing a bit of damage and looking cute as a button", false)};
+     
+        allMoves.put("Jellyfish", jellyMoves); 
+        
+     Move[] jellysMoves =  {new Move("sting", 10.0, 60, 0, 0, true, 30, "Scary Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
+        new Move("Whip", 5.0, 200, 0, 0, false, 0, "Scary Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
+        new Move("Regneration", -15.0, 201, 0, 0, false, 1, "Scary Jelly regrows it's broken tentacles, healing a small ammount of HP", true),
+        new Move("poison", 50.0, 20, 0, 0, false, 1, "Scary Jelly clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false)};
+     
+     allMoves.put("Jellyfish(Scary)", jellysMoves); 
+              Move[] shellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The shelled turtle eats some seagrass and heals some HP", true),
+        new Move("Bonk", 25.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
+        new Move("Spin", 0.0, 201, 5, 1, false, 1, "The shelled turtle spins in a circle, feeling quicker than before", true),
+        new Move("Punch", 15.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
+     
+     allMoves.put("Turtle(Shell)", shellMoves); 
 
-              Move[] squibiMoves =  {new Move("Slap", 10.0, 70, 0, 0, true, 30, "The small squid slaps the target with its tentacles, dealing medium damage", false),
-            new Move("squirt", 5.0, 201, 0, 0, false, 0, "The small squid shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false),
-            new Move("Camouflage", 30.0, 70, 10, 1, false, 1, "The small squid camouflages itself, making it harder to hit", true),
-            new Move("whip", 5.0, 200, 0, 0, false, 1, "The small squid whips the target with its tentacles, dealing small damge with high precision", false)};
-         
-         allMoves.put("Squibi", squibiMoves); 
+         Move[] nshellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The turtle eats some seagrass and heals some HP", true),
+        new Move("Bonk", 25.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
+        new Move("Chomp", 30.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
+        new Move("Punch", 15.0, 60, -15, 0, false, 1, "The turtle hides in it's shell, the target does less damage now", false)};
+     
+     allMoves.put("Turtle(NoShell)", nshellMoves); 
+
+          Move[] squibiMoves =  {new Move("Slap", 10.0, 70, 0, 0, true, 30, "The small squid slaps the target with its tentacles, dealing medium damage", false),
+        new Move("squirt", 5.0, 201, 0, 0, false, 0, "The small squid shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false),
+        new Move("Camouflage", 30.0, 70, 10, 1, false, 1, "The small squid camouflages itself, making it harder to hit", true),
+        new Move("whip", 5.0, 200, 0, 0, false, 1, "The small squid whips the target with its tentacles, dealing small damge with high precision", false)};
+     
+     allMoves.put("Squibi", squibiMoves); 
     }
 
 
@@ -217,6 +220,7 @@ public class Fish {
 
     public Fish(int level){
         this.fishes_init();
+        this.moves_init();
         int base;
         int cap;
         if (level<=20){
@@ -244,6 +248,8 @@ public class Fish {
         this.type = temp.name;
 
         this.level = level + (int)(Math.random()*10) - 5;
+
+        this.moveList = allMoves.get(this.type);
         
         this.levelScale();
     }
