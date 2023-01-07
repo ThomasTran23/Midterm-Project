@@ -173,7 +173,7 @@ public class Fish {
     public void moves_init(){
         
         Move[] hatchMoves = {new Move("Nibble", 10.0, 70, 0, 0, false, 1, "Hatchling nibbles the target dealing a small ammount of damage", false),
-        new Move("Flop", 0.0, 60, -5, 0, false, 1, "Hatchling flops around, looking harmless. The target feels less motivated to do damage. ", false),
+        new Move("Flop", 0, 200, -5, 0, false, 1, "Hatchling flops around, looking harmless. The target feels less motivated to do damage. ", false),
         new Move("Splash", 15.0, 40, 0, 0, false, 1, "The hatchling tries to splash the target with its tail, doing a bit of damage and looking cute as a button", false),
         new Move("Squirt", 2.0, 201, 0, 0, false, 1, "The hatchling shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false)};
 

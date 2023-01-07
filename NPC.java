@@ -1,3 +1,4 @@
+import java.rmi.server.SocketSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -255,8 +256,9 @@ public class NPC {
 
             message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/100)) + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
-            
-            if(move.getMultiplier()>0){
+
+            if(move.getMultiplier()!=0){
+                System.out.println("stat change");
                 String changed;
                 double temp;
                 double after;
@@ -271,7 +273,9 @@ public class NPC {
                     target.speedChange(move.getMultiplier());
                     after = target.getScaledSpeed();
                 }
+                System.out.println("msg 1");
                 message += message.length()>0?"\n":move.getName() + " hit! " ;
+                System.out.println("msg 2");
                 message += target.getName() + "'s " + changed + " went from " + temp + " to " + after + ".";
             }
 
