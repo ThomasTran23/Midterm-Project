@@ -38,7 +38,7 @@ public class NPC {
         // face.setImage("fisherman");
         // face.setBackground("");
 
-        face.togglePanel(false);
+        // face.togglePanel(false);
 
         playerFish.levelScale();
 

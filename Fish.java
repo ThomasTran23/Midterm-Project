@@ -31,6 +31,7 @@ public class Fish {
     "Hammerhead(Angry)","Shark(Angry)","Orca(Scary)","Whale(Scary)"};
 
     public Fish(String name, int health, double attack, double speed,boolean evolved){
+        fishes_init();
         this.name = name;
         this.type = this.name;
         this.health = health;
@@ -47,6 +48,7 @@ public class Fish {
     }
 
     public Fish(String name, int health, double attack, double speed,int level){
+        fishes_init();
         this.name = name;
         this.type = name;
         this.health = health;
@@ -59,10 +61,7 @@ public class Fish {
         this.levelScale();
 
         this.moveList = allMoves.get(this.type);
-
-        for (String s : allMoves.keySet()){
-            System.out.println(s);
-        }
+        
 
         // for (Move m : getMoveList()){
         //     System.out.println(m.getName());
