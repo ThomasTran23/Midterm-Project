@@ -23,8 +23,8 @@ public class Fish {
     private Move[] moveList;
 
     public String[] fishArray = {"Hatchling","Jellyfish","Turtle(Shell)","Squibi","Octopus",
-    "Hatchling(Hatched:Blue)","Hatchling(Hatched:Red)","Hatchling(Hatched:Rainbow)","Jellyfish(Scary)",
-    "Turtle(No Shell)","Squibi(Adult)","Octopus(BlueRing)",
+    "Hatchling(Hatched_Blue)","Hatchling(Hatched_Red)","Hatchling(Hatched_Rainbow)","Jellyfish(Scary)",
+    "Turtle(No Shell)","Squibi(Adult)","Octopus(Blue-Ring)",
     "Hammerhead","Shark","Orca","Whale",
     "Hammerhead(Angry)","Shark(Angry)","Orca(Scary)","Whale(Scary)"};
 
@@ -74,18 +74,18 @@ public class Fish {
         );
 
         fishes.put(
-            "Hatchling(Hatched:Blue)",
-            new Fish("Hatchling(Hatched:Blue)",60,3,4,true)
+            "Hatchling(Hatched_Blue)",
+            new Fish("Hatchling(Hatched_Blue)",60,3,4,true)
         );
 
         fishes.put(
-            "Hatchling(Hatched:Red)",
-            new Fish("Hatchling(Hatched:Red)", 50,5,4,true)
+            "Hatchling(Hatched_Red)",
+            new Fish("Hatchling(Hatched_Red)", 50,5,4,true)
         );
 
         fishes.put(
-            "Hatchling(Hatched:Rainbow)",
-            new Fish("Hatchling(Hatched:Rainbow)",55,4,4,true)
+            "Hatchling(Hatched_Rainbow)",
+            new Fish("Hatchling(Hatched_Rainbow)",55,4,4,true)
         );
 
         fishes.put(
@@ -124,8 +124,8 @@ public class Fish {
             );
 
         fishes.put(
-            "Octopus(BlueRing)",
-            new Fish("Octopus(BlueRing)",45,5,5,true)
+            "Octopus(Blue-Ring)",
+            new Fish("Octopus(Blue-Ring)",45,5,5,true)
             );
 
         fishes.put(
