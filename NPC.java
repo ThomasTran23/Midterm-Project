@@ -21,6 +21,15 @@ public class NPC {
 
         face.popMessage("The Deep is calling.", "The Boatman");
 
+        String[] confirmOptions = {"Evolve","Keep current fish for now", "Never evolve"};
+        Fish evolution = playerFish.evolve();
+        int confirm = face.popConfirm("Your fish is evolving!","Surprise!",confirmOptions,evolution.getType());
+        if (confirm == 0){
+            changeFish(evolution);
+        }else if (confirm == 2){
+            playerFish.removeEvolve();
+        }
+
         mainMenu();
     }
 
@@ -187,7 +196,14 @@ public class NPC {
                 
             }else if(n == 2){
                 if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?2 + enemyFish.getLevel():3)){
-                    changeFish(playerFish.evolve());
+                    String[] confirmOptions = {"Evolve","Keep current fish for now", "Never evolve"};
+                    Fish evolution = playerFish.evolve();
+                    int confirm = face.popConfirm("Your fish is evolving!","Surprise!",confirmOptions,evolution.getType());
+                    if (confirm == 0){
+                        changeFish(evolution);
+                    }else if (confirm == 2){
+                        playerFish.removeEvolve();
+                    }
                 }
             }
         }else{

@@ -55,7 +55,7 @@ public class Fish {
         this.evolved = false;
         this.level = level;
 
-        this.threshold = level + (int)(Math.random()*20) + 10;
+        this.threshold = level /*+ (int)(Math.random()*20) + 10*/;
 
         this.levelScale();
 
@@ -337,14 +337,28 @@ public class Fish {
 
     public Fish evolve(){
         ArrayList<Fish> evolutions = new ArrayList<Fish>();
+        System.out.println("evo inited");
         for (String s: fishArray){
             if (s.length()>= this.type.length()){
                 if (this.type.equals(s.substring(0,type.length()))){
-                                evolutions.add(fishes.get(s));
+                    System.out.println(s);
+                    evolutions.add(fishes.get(s));
                 }
             }
         }
-        return evolutions.get((int)(Math.random()*evolutions.size()));
+        for(Fish f : evolutions){
+            System.out.println(f.getName());
+        }
+        Fish evo = evolutions.get((int)(Math.random()*evolutions.size()-1));
+        if (evo == null){
+            System.out.println("shit aint work");
+        }
+        evo.levelUp(this.level);
+        return evo;
 
+    }
+
+    public void removeEvolve(){
+        this.evolved = true;
     }
 }
