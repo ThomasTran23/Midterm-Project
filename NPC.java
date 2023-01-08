@@ -21,15 +21,6 @@ public class NPC {
 
         face.popMessage("The Deep is calling.", "The Boatman");
 
-        String[] confirmOptions = {"Evolve","Keep current fish for now", "Never evolve"};
-        Fish evolution = playerFish.evolve();
-        int confirm = face.popConfirm("Your fish is evolving!","Surprise!",confirmOptions,evolution.getType());
-        if (confirm == 0){
-            changeFish(evolution);
-        }else if (confirm == 2){
-            playerFish.removeEvolve();
-        }
-
         mainMenu();
     }
 
@@ -74,9 +65,9 @@ public class NPC {
             int n = face.popConfirm(
 
                 "\nLevel: " + playerFish.getLevel() +
-                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + (playerFish.getScaledHealth() - playerFish.getHealth()) + ")" +
-                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + (playerFish.getScaledAttack() - playerFish.getAttack()) + ")" +
-                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + (playerFish.getScaledSpeed() - playerFish.getSpeed()) + ")"
+                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + playerFish.getHpIV() + "*" + playerFish.getLevel() + ")" +
+                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + playerFish.getAtkIV() + "*" + playerFish.getLevel() + ")" +
+                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + playerFish.getSpdIV() + "*" + playerFish.getLevel() + ")"
                 
                 ,playerFish.getName(),
                 options,
@@ -97,10 +88,10 @@ public class NPC {
     private void viewEnemyStats(Fish playerFish){
             face.popMessage(
 
-                "\nLevel: " + playerFish.getLevel() +
-                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + (playerFish.getScaledHealth() - playerFish.getHealth()) + ")" +
-                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + (playerFish.getScaledAttack() - playerFish.getAttack()) + ")" +
-                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + (playerFish.getScaledSpeed() - playerFish.getSpeed()) + ")"
+            "\nLevel: " + playerFish.getLevel() +
+            "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + playerFish.getHpIV() + "*" + playerFish.getLevel() + ")" +
+            "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + playerFish.getAtkIV() + "*" + playerFish.getLevel() + ")" +
+            "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + playerFish.getSpdIV() + "*" + playerFish.getLevel() + ")"
                 
                 ,playerFish.getName()
                 
