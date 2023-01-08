@@ -45,7 +45,7 @@ public class NPC {
         }else if (s.equals(menu[0])){
             Battle(playerFish.getLevel());
         }else if (s.equals(menu[1])){
-            viewStats(playerFish);
+            viewStats();
         }else if(s.equals(menu[2])){
             viewInventory();
         }
@@ -60,7 +60,7 @@ public class NPC {
         playerFish = fish;
     }
 
-    public void viewStats(Fish playerFish){
+    public void viewStats(){
         final String[] options = {"Change Name","Exit","View Moves"};
             int n = face.popConfirm(
 
@@ -83,6 +83,19 @@ public class NPC {
                 }
                 face.popMessage(message, playerFish.getName() + "'s Moves");
             }
+    }
+
+    private void viewEnemyStats(Fish playerFish){
+            face.popMessage(
+
+                "\nLevel: " + playerFish.getLevel() +
+                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + (playerFish.getScaledHealth() - playerFish.getHealth()) + ")" +
+                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + (playerFish.getScaledAttack() - playerFish.getAttack()) + ")" +
+                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + (playerFish.getScaledSpeed() - playerFish.getSpeed()) + ")"
+                
+                ,playerFish.getName()
+                
+            );
     }
 
     public void viewInventory(){
@@ -118,15 +131,15 @@ public class NPC {
         }
         active = true;
         while (active){
-            if (turn&&!skip){
+            if (turn&&skip==false){
                 playerMenu();
                 turn = !turn;
             }else if (skip){
                 skip = !skip;
             }else if (!eskip){
-                viewStats(enemyFish);
                 face.popMessage(processMove(enemyFish.getMoveList()[(int)(Math.random()*4)], playerFish,enemyFish),"Enemy");
                 turn = !turn;
+                viewEnemyStats(enemyFish);
             }else if (eskip){
                 eskip = !eskip;
             }
@@ -227,7 +240,7 @@ public class NPC {
         }else if (n == 1){
             attackMenu();
         }else{
-            this.viewStats(playerFish);
+            this.viewStats();
             playerMenu();
         }
     }

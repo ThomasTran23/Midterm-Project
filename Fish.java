@@ -224,23 +224,18 @@ public class Fish {
     public Fish(int level){
         this.fishes_init();
         this.moves_init();
-        int base;
+        int base = 0;
         int cap;
         if (level<=20){
-            base = 0;
             cap = 5;
         }else if(level<=40){
-            base = 5;
-            cap = 4;
+            cap = 9;
         }else if(level <=60){
-            base = 9;
-            cap = 3;
+            cap = 12;
         }else if(level <= 80){
-            base = 12;
-            cap = 4;
+            cap = 16;
         }else{
-            base = 16;
-            cap = 4;
+            cap = fishArray.length;
         }
         Fish temp = fishes.get(fishArray[(int)(Math.random()*cap) + base]);
 
@@ -316,11 +311,11 @@ public class Fish {
     }
 
     public void attackChange(int multiplier){
-        this.scaledAttack *= 1+ (multiplier/100);
+        this.scaledAttack *= 1+ (multiplier/70);
     }
 
     public void speedChange(int multiplier){
-        this.scaledSpeed *= 1 + (multiplier/100);
+        this.scaledSpeed *= 1 + (multiplier/70);
     }
 
     public boolean levelUp(int level){
@@ -343,8 +338,10 @@ public class Fish {
     public Fish evolve(){
         ArrayList<Fish> evolutions = new ArrayList<Fish>();
         for (String s: fishArray){
-            if (this.type.equals(s.substring(0,type.length()))){
-                evolutions.add(fishes.get(s));
+            if (s.length()>= this.type.length()){
+                if (this.type.equals(s.substring(0,type.length()))){
+                                evolutions.add(fishes.get(s));
+                }
             }
         }
         return evolutions.get((int)(Math.random()*evolutions.size()));
