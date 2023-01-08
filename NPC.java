@@ -174,7 +174,7 @@ public class NPC {
                 
             }else if(n == 2){
                 if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?2 + enemyFish.getLevel():3)){
-                    playerFish.evolve();
+                    changeFish(playerFish.evolve());
                 }
             }
         }else{
