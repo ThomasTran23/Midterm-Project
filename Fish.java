@@ -24,7 +24,7 @@ public class Fish {
 
     public String[] fishArray = {"Hatchling","Jellyfish","Turtle(Shell)","Squibi","Octopus",
     "Hatchling(Hatched:Blue)","Hatchling(Hatched:Red)","Hatchling(Hatched:Rainbow)","Jellyfish(Scary)",
-    "Turtle(No Shell)","Squeed","Blue Ring",
+    "Turtle(No Shell)","Squibi(Adult)","Octopus(BlueRing)",
     "Hammerhead","Shark","Orca","Whale",
     "Hammerhead(Angry)","Shark(Angry)","Orca(Scary)","Whale(Scary)"};
 
@@ -114,8 +114,8 @@ public class Fish {
             );
 
         fishes.put(
-            "Squeed",
-            new Fish("Squeed",45,4,8,true)
+            "Squibi(Adult)",
+            new Fish("Squibi(Adult)",45,4,8,true)
             );
 
         fishes.put(
@@ -124,8 +124,8 @@ public class Fish {
             );
 
         fishes.put(
-            "Blue Ring",
-            new Fish("Blue Ring",45,5,5,true)
+            "Octopus(BlueRing)",
+            new Fish("Octopus(BlueRing)",45,5,5,true)
             );
 
         fishes.put(

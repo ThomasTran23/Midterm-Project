@@ -264,6 +264,8 @@ public class NPC {
             }
 
             if (move.getStatus()){
+                statusEffect(target,move);
+                message += "\n" + target.getName() + " was stunned!";
             }
 
 
@@ -321,7 +323,13 @@ public class NPC {
     }
 
     private void statusEffect(Fish target,Move move){
-        if((int) (Math.random()*100)>move.getstunChance())
+        if((int) (Math.random()*100)<=move.getstunChance()){
+            if (target == playerFish){
+                skip = true;
+            }else{
+                eskip = true;
+            }
+        }
     }
 
 }
