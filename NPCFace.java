@@ -41,7 +41,6 @@ private String[] files;
 private Image[] allPics;
 private ArrayList<Image> pics;
 private Timer timer;
-// private ArrayList<ImagePanel> tempPanels = new ArrayList<ImagePanel>();
 
 private static final String imageBase = "./NPC_images/";
 
@@ -125,48 +124,6 @@ public void createGUI() {
       setAlwaysOnTop(true);
       setAlwaysOnTop(false);
   }
-
-  // public void createImagePanel(int w, int h, int x, int y){
-
-  //     Container contentPane = this.getContentPane();
-
-  //     ImagePanel temp = new ImagePanel();
-  //     // imagePanel = new ImagePanel();
-  //     // int width = 415;
-  //     // int height = 480;
-  //     // imagePanel.setPreferredSize(new Dimension(width, height));
-  //     // imagePanel.setMinimumSize(new Dimension(width, height));
-  //     // imagePanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-  //     // GridBagConstraints c = new GridBagConstraints();
-  //     // c.fill = GridBagConstraints.HORIZONTAL;
-  //     // c.gridx = 1;
-  //     // c.gridy = 1;
-  //     // contentPane.add(imagePanel,c);
-
-  //     int width = w;
-  //     int height = h;
-  //     temp.setPreferredSize(new Dimension(width, height));
-  //     temp.setMinimumSize(new Dimension(width, height));
-  //     temp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-  //     GridBagConstraints c = new GridBagConstraints();
-  //     c.fill = GridBagConstraints.HORIZONTAL;
-  //     c.gridx = x;
-  //     c.gridy = y;
-  //     contentPane.add(temp,c);
-
-  //     c.fill = GridBagConstraints.HORIZONTAL;
-  //     c.gridwidth = 2;
-  //     c.gridx = x;
-  //     c.gridy = y;
-  //     c.ipady = 20;
-
-  //     tempPanels.add(temp);
-  // }
-
-  // public void setImagePanel(int panelNum, String mood){
-  //   ImagePanel panel = tempPanels.get(panelNum);
-  //   panel.paintComponent(getGraphics(), mood);
-  // }
 
   public void setBackground(String type) {
     Image backImage = createImage(base+type+"background.jpg", "");

@@ -10,9 +10,6 @@ public class NPC {
 
     private String[] allItems = {"Pellet","Big Pellet","Bait","Smelly Bait","Fear Pheromone","Nightmare Pheromone"};
 
-    
-
-
     public NPC(){
         face = new NPCFace();
 
@@ -100,8 +97,6 @@ public class NPC {
             face.popMessage(temp, "Your Items");
     }
 
-    //******************************************THIS IS THE GREAT BORDER OF BUGS***************************************** */
-
     private Fish enemyFish;
     boolean turn = true;
     boolean active;
@@ -131,7 +126,6 @@ public class NPC {
                 skip = !skip;
             }else if (!eskip){
                 face.popMessage(processMove(enemyFish.getMoveList()[(int)(Math.random()*4)], playerFish,enemyFish),"Enemy");
-                // System.out.println("enemy turn");
                 turn = !turn;
             }else if (eskip){
                 eskip = !eskip;
@@ -239,13 +233,6 @@ public class NPC {
     }
 
     private String processMove(Move move,Fish target,Fish user){
-        // if (move.getDamage()>0){
-        //     damageMove(move,target);
-        // }else if (move.getMultiplier()>0){
-        //     statMove(move, target);
-        // }else{
-        //     statusEffect(move, target);
-        // }
         if (move.getTarget()){
             target = user;
         }
@@ -258,7 +245,6 @@ public class NPC {
             }
 
             if(move.getMultiplier()!=0){
-                System.out.println("stat change");
                 String changed;
                 double temp;
                 double after;
@@ -273,15 +259,11 @@ public class NPC {
                     target.speedChange(move.getMultiplier());
                     after = target.getScaledSpeed();
                 }
-                System.out.println("msg 1");
                 message += message.length()>0?"\n":move.getName() + " hit! " ;
-                System.out.println("msg 2");
                 message += target.getName() + "'s " + changed + " went from " + temp + " to " + after + ".";
             }
 
             if (move.getStatus()){
-                // statusEffect(move, target);
-                System.out.println("status run");
             }
 
 
@@ -338,47 +320,8 @@ public class NPC {
         inventory.remove(s);
     }
 
-    // private String damageMove(Move move,Fish target){
-    //     if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()||move.getAccuracy()>200){
-    //         target.takeDamage(move.getDamage());
-    //         if (move.getStatus()){
-    //             statusEffect(move, target);
-    //         }
-    //         return move.getName() + " hit! " + target.getName() + " took " +move.getDamage() + " damage. They're now at " + target.getHealth() + " health.";
-    //     }else{
-    //         return move.getName() + " missed!";
-    //     }
-        
-        
-    // }
-
-    // private String statMove(Move move,Fish target){
-    //     if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()||move.getAccuracy()>200){
-    //         String changed;
-    //         double temp;
-    //         double after;
-    //         if (move.getStat() == 0){
-    //             changed = "attack";
-    //             temp = target.getScaledAttack();
-    //             target.attackChange(move.getMultiplier());
-    //             after = target.getScaledAttack();
-    //         }else{
-    //             changed = "speed";
-    //             temp = target.getScaledSpeed();
-    //             target.speedChange(move.getMultiplier());
-    //             after = target.getScaledAttack();
-    //         }
-    //         if (move.getStatus()){
-    //             statusEffect(move, target);
-    //         }
-    //         return move.getName() + " hit! " + target.getName() + "'s " + changed + " went from " + temp + " to " + after + ".";
-    //     }else{
-    //         return move.getName() + " missed!";
-    //     }
-    // }
-
-    // private String statusEffect(Move move,Fish target){
-        
-    // }
+    private void statusEffect(Fish target,Move move){
+        if((int) (Math.random()*100)>move.getstunChance())
+    }
 
 }
