@@ -256,6 +256,11 @@ public class NPC {
 
             message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/100)) + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
+            if (move.getDamage() < 0){
+                target.heal(move.getDamage()*-1);
+
+                message += move.getName() + " healed " + target.getName() + " by " + move.getDamage()*-1 + ". It's health is now at " + target.getScaledHealth();
+            }
 
             if(move.getMultiplier()!=0){
                 String changed;

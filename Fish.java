@@ -194,14 +194,14 @@ public class Fish {
      
      allMoves.put("Jellyfish(Scary)", jellysMoves); 
 
-              Move[] shellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The shelled turtle eats some seagrass and heals some HP", true),
+              Move[] shellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, false, 0, "The shelled turtle eats some seagrass and heals some HP", true),
         new Move("Bonk", 15.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
         new Move("Spin", 0.0, 201, 5, 1, false, 1, "The shelled turtle spins in a circle, feeling quicker than before", true),
         new Move("Punch", 10.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
      
      allMoves.put("Turtle(Shell)", shellMoves); 
 
-         Move[] nshellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The turtle eats some seagrass and heals some HP", true),
+         Move[] nshellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, false, 0, "The turtle eats some seagrass and heals some HP", true),
         new Move("Bonk", 20.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
         new Move("Chomp", 15.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
         new Move("Punch", 15.0, 60, -15, 0, false, 1, "The turtle hides in it's shell, the target does less damage now", false)};
@@ -311,11 +311,11 @@ public class Fish {
     }
 
     public void attackChange(int multiplier){
-        this.scaledAttack *= 1+ (multiplier/70);
+        this.scaledAttack += multiplier;
     }
 
     public void speedChange(int multiplier){
-        this.scaledSpeed *= 1 + (multiplier/70);
+        this.scaledSpeed = this.scaledAttack * 1+ (multiplier/5);
     }
 
     public boolean levelUp(int level){
