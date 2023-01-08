@@ -1,4 +1,3 @@
-import java.rmi.server.SocketSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -46,7 +45,7 @@ public class NPC {
         }else if (s.equals(menu[0])){
             Battle(playerFish.getLevel());
         }else if (s.equals(menu[1])){
-            viewStats();
+            viewStats(playerFish);
         }else if(s.equals(menu[2])){
             viewInventory();
         }
@@ -61,7 +60,7 @@ public class NPC {
         playerFish = fish;
     }
 
-    public void viewStats(){
+    public void viewStats(Fish playerFish){
         final String[] options = {"Change Name","Exit","View Moves"};
             int n = face.popConfirm(
 
@@ -125,6 +124,7 @@ public class NPC {
             }else if (skip){
                 skip = !skip;
             }else if (!eskip){
+                viewStats(enemyFish);
                 face.popMessage(processMove(enemyFish.getMoveList()[(int)(Math.random()*4)], playerFish,enemyFish),"Enemy");
                 turn = !turn;
             }else if (eskip){
@@ -227,7 +227,7 @@ public class NPC {
         }else if (n == 1){
             attackMenu();
         }else{
-            this.viewStats();
+            this.viewStats(playerFish);
             playerMenu();
         }
     }

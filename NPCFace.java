@@ -12,7 +12,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FilenameFilter;
+// import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -20,14 +20,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+// import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import javax.swing.JSpinner.DefaultEditor;
+// import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.border.Border;
-import javax.swing.text.JTextComponent;
-import javax.swing.JTextField;
+// import javax.swing.text.JTextComponent;
+// import javax.swing.JTextField;
 
 public class NPCFace extends JFrame implements ActionListener{
 
@@ -45,7 +45,7 @@ private Timer timer;
 private static final String imageBase = "./NPC_images/";
 
 public static void main(String args[]) {
-      NPCFace newNPC = new NPCFace();
+      new NPCFace();
   }
 
 public NPCFace(){

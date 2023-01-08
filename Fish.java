@@ -193,16 +193,17 @@ public class Fish {
         new Move("poison", 50.0, 20, 0, 0, false, 1, "Scary Jelly clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false)};
      
      allMoves.put("Jellyfish(Scary)", jellysMoves); 
+
               Move[] shellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The shelled turtle eats some seagrass and heals some HP", true),
-        new Move("Bonk", 25.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
+        new Move("Bonk", 15.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
         new Move("Spin", 0.0, 201, 5, 1, false, 1, "The shelled turtle spins in a circle, feeling quicker than before", true),
-        new Move("Punch", 15.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
+        new Move("Punch", 10.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
      
      allMoves.put("Turtle(Shell)", shellMoves); 
 
          Move[] nshellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, true, 30, "The turtle eats some seagrass and heals some HP", true),
-        new Move("Bonk", 25.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
-        new Move("Chomp", 30.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
+        new Move("Bonk", 20.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
+        new Move("Chomp", 15.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
         new Move("Punch", 15.0, 60, -15, 0, false, 1, "The turtle hides in it's shell, the target does less damage now", false)};
      
      allMoves.put("Turtle(NoShell)", nshellMoves); 
@@ -249,7 +250,7 @@ public class Fish {
         this.speed = temp.speed;
         this.type = temp.name;
 
-        this.level = level + (int)(Math.random()*10) - 5;
+        this.level = level-5>=0?level+(int)(Math.random()*10)-5:level+(int)(Math.random()*5)-level;
 
         this.moveList = allMoves.get(this.type);
         
