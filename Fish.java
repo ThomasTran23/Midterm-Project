@@ -64,13 +64,15 @@ public class Fish {
 
         this.threshold = level + (int)(Math.random()*20) + 10;
 
+        this.hpIV = (int)(Math.random()*10);
+        this.atkIV = (int)(Math.random()*10);
+        this.spdIV = (int)(Math.random()*10);
+
         this.levelScale();
 
         this.moveList = allMoves.get(this.type);
 
-        this.hpIV = (int)(Math.random()*10);
-        this.atkIV = (int)(Math.random()*10);
-        this.spdIV = (int)(Math.random()*10);
+
         
 
         // for (Move m : getMoveList()){
@@ -338,10 +340,12 @@ public class Fish {
 
         this.moveList = allMoves.get(this.type);
         
-        this.levelScale();
         this.hpIV = (int)(Math.random()*10);
         this.atkIV = (int)(Math.random()*10);
         this.spdIV = (int)(Math.random()*10);
+
+        this.levelScale();
+
     }
 
     public String getName(){
