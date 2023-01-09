@@ -26,6 +26,8 @@ public class NPC {
 
     public void mainMenu(){
 
+        face.movePanel(true);
+
         String[] menu = {
         "Cast Line",
         "View Fish",
@@ -120,6 +122,8 @@ public class NPC {
         this.enemyFish = new Fish(level);
 
         enemyFish.scaleIV();
+
+        face.movePanel(false);
 
         face.setBackground("battle_");
         face.setImage(enemyFish.getType());

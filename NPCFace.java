@@ -5,15 +5,19 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+// import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Toolkit;
+// import java.awt.Toolkit;
 import java.io.File;
 // import java.io.FilenameFilter;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -30,10 +34,7 @@ import javax.swing.border.Border;
 // import javax.swing.text.JTextComponent;
 // import javax.swing.JTextField;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.geom.RectangularShape;
-import java.awt.geom.Rectangle2D;
-import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class NPCFace extends JFrame implements ActionListener{
 
@@ -48,6 +49,8 @@ private Image[] allPics;
 private ArrayList<Image> pics;
 private Timer timer;
 private JFrame frame;
+private Image[] ePics;
+// private ImageFlip flip = new ImageFlip();
 
 private static final String imageBase = "./NPC_images/";
 
@@ -129,6 +132,8 @@ public void createGUI() {
 
       frame.setLocation(0, HEIGHT/2);
       frame.setVisible(true);
+
+      // imagePanel.add(flip);
   
       setLocationRelativeTo(null);
       setVisible(true);
@@ -181,6 +186,7 @@ public void getAllImages() {
       //System.err.println(pics.size());
   }
 
+
 public void getImagesAnim(final String mood) {
   
       for (int i = 0; i < files.length; i++) {
@@ -192,12 +198,13 @@ public void getImagesAnim(final String mood) {
   }
 
   public void getImages(final String mood) {
-  
-    for (int i = 0; i < files.length; i++) {
+
+      for (int i = 0; i < files.length; i++) {
         if (files[i].equals(/*"NPC_" +*/ mood + ".jpg")) {
             pics.add(allPics[i]);
         }
-    }
+      }
+    
     //System.err.println(pics.size());
 }
 
@@ -309,16 +316,84 @@ String s = (String)JOptionPane.showInputDialog(
   return s;
 }
 
-private void left(JFrame frame){
-    GraphicsConfiguration config = frame.getGraphicsConfiguration();
-    Rectangle bounds = config.getBounds();
-    Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(config);
-
-    int x = bounds.x + bounds.width - insets.left - frame.getWidth();
-    int y = imagePanel.getY();
-    frame.setLocation(x,y);
+public void movePanel(boolean center){
+  if (center){
+    imagePanel.setLocation(512,153);
+  }else{
+    imagePanel.setLocation(1024,153);
+  }
 }
 
-  
+public static final int FLIP_VERTICAL = 1;
+public static final int FLIP_HORIZONTAL = -1;
+
+public void flip(String input, File output, int direction){
+  try{
+    BufferedImage image = (BufferedImage) createImage(input, "");
+    int width = image.getWidth();
+    int height = image.getHeight();
+    BufferedImage flipped = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+
+    for (int y = 0;y<height; y++){
+      for (int x = 0; x<width; x++){
+        switch(direction){
+          case FLIP_HORIZONTAL:
+            flipped.setRGB((width-1)-x,y,image.getRGB(x,y));
+            break;
+          case FLIP_VERTICAL:
+            flipped.setRGB(x, (height-1)-y,image.getRGB(x,y));
+            break;
+        }
+      }
+    }
+
+    ImageIO.write(flipped, "jpg", output);
+
+    // ImageIcon icon = new ImageIcon(output.getPath(),"");
+
+    // Image outImage = icon.getImage();
+
+    // return outImage;
+
+  }catch(IOException ex){
+    ex.printStackTrace();
+  }
+}
+
+public void setImageEnemy(String mood) {
+  timer.stop();
+  pics.clear();
+  File temp = new File("e" + mood);
+  flip(mood, temp, FLIP_HORIZONTAL);
+  try{
+    pics.add(ImageIO.read(temp));
+  }catch(IOException e){
+    e.printStackTrace();
+  }
+  timer.start(); 
+}
+
+  // public class ImageFlip extends JPanel {
+
+  //   public void paint(Graphics g) {
+  //     Image myImage = pics.get(0);
+  //     BufferedImage bufferedImage = new BufferedImage(myImage.getWidth(null), myImage.getHeight(null), BufferedImage.TYPE_INT_RGB);
+  //     Graphics2D g2d = (Graphics2D) g;
+
+  //     Graphics gb = bufferedImage.getGraphics();
+  //     gb.drawImage(myImage, 0, 0, null);
+  //     gb.dispose();
+
+  //     AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+  //     tx.translate(-myImage.getWidth(null), 0);
+  //     AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+  //     bufferedImage = op.filter(bufferedImage, null);
+
+  //     g2d.drawImage(myImage, 10, 10, null);
+  //     g2d.drawImage(bufferedImage, null, 300, 10);
+  //   }
+    
+
+  // }
 
 }
