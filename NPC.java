@@ -12,7 +12,7 @@ public class NPC {
     public NPC(){
         face = new NPCFace();
 
-        playerFish = new Fish("Hatchling", 30,1,3,0);
+        playerFish = new Fish("Hatchling",30,1,3,0);
 
         inventory.add("Pellet");
 
@@ -65,9 +65,9 @@ public class NPC {
             int n = face.popConfirm(
 
                 "\nLevel: " + playerFish.getLevel() +
-                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + (playerFish.getScaledHealth() - playerFish.getHealth()) + ")" +
-                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + (playerFish.getScaledAttack() - playerFish.getAttack()) + ")" +
-                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + (playerFish.getScaledSpeed() - playerFish.getSpeed()) + ")"
+                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + playerFish.getHpIV() + "*" + playerFish.getLevel() + "[" + playerFish.getHpIV() * playerFish.getLevel() + "])" +
+                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + playerFish.getAtkIV() + "*" + playerFish.getLevel() + "[" + playerFish.getAtkIV() * playerFish.getLevel() + "])" +
+                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + playerFish.getSpdIV() + "*" + playerFish.getLevel() + "[" + playerFish.getSpdIV() * playerFish.getLevel() + "])"
                 
                 ,playerFish.getName(),
                 options,
@@ -88,10 +88,10 @@ public class NPC {
     private void viewEnemyStats(Fish playerFish){
             face.popMessage(
 
-                "\nLevel: " + playerFish.getLevel() +
-                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + (playerFish.getScaledHealth() - playerFish.getHealth()) + ")" +
-                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + (playerFish.getScaledAttack() - playerFish.getAttack()) + ")" +
-                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + (playerFish.getScaledSpeed() - playerFish.getSpeed()) + ")"
+            "\nLevel: " + playerFish.getLevel() +
+            "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + playerFish.getHpIV() + "*" + playerFish.getLevel() + "[" + playerFish.getHpIV() * playerFish.getLevel() + "])" +
+            "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + playerFish.getAtkIV() + "*" + playerFish.getLevel() + "[" + playerFish.getAtkIV() * playerFish.getLevel() + "])" +
+            "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + playerFish.getSpdIV() + "*" + playerFish.getLevel() + "[" + playerFish.getSpdIV() * playerFish.getLevel() + "])"
                 
                 ,playerFish.getName()
                 
@@ -120,6 +120,8 @@ public class NPC {
     private void Battle(int level){
         this.enemyFish = new Fish(level);
 
+        enemyFish.scaleIV();
+
         face.setBackground("battle_");
         face.setImage(enemyFish.getType());
 
@@ -131,17 +133,29 @@ public class NPC {
         }
         active = true;
         while (active){
+            System.out.println("next turn");
             if (turn&&skip==false){
                 playerMenu();
                 turn = !turn;
             }else if (skip){
+                System.out.println("skipped");
                 skip = !skip;
+                if (playerFish.getScaledHealth()>0){
+                    turn = !turn;
+                    continue;
+                }
             }else if (!eskip){
                 face.popMessage(processMove(enemyFish.getMoveList()[(int)(Math.random()*4)], playerFish,enemyFish),"Enemy");
                 turn = !turn;
                 viewEnemyStats(enemyFish);
             }else if (eskip){
+                System.out.println("eskipped");
                 eskip = !eskip;
+                if (enemyFish.getScaledHealth()>0){
+                    turn = !turn;
+                    continue;
+                }
+                
             }
 
             if (playerFish.getScaledHealth()<=0){
@@ -186,8 +200,15 @@ public class NPC {
                 face.popMessage(num + num>0?item +"s":item + "recieved", "Item obtained!");
                 
             }else if(n == 2){
-                if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?2 + enemyFish.getLevel():3)){
-                    changeFish(playerFish.evolve());
+                if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?5 + enemyFish.getLevel():4)){
+                    String[] confirmOptions = {"Evolve","Keep current fish for now", "Never evolve"};
+                    Fish evolution = playerFish.evolve();
+                    int confirm = face.popConfirm("Your fish is evolving!","Surprise!",confirmOptions,evolution.getType());
+                    if (confirm == 0){
+                        changeFish(evolution);
+                    }else if (confirm == 2){
+                        playerFish.removeEvolve();
+                    }
                 }
             }
         }else{
@@ -250,7 +271,7 @@ public class NPC {
             target = user;
         }
         String message = "";
-        if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()/3||move.getAccuracy()>=200){
+        if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()-user.getScaledSpeed()||move.getAccuracy()>=200){
             if (move.getDamage()>0){
                 target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/100)));
 
@@ -282,8 +303,8 @@ public class NPC {
             }
 
             if (move.getStatus()){
-                statusEffect(target,move);
-                message += "\n" + target.getName() + " was stunned!";
+                if (statusEffect(target,move))
+                    message += "\n" + target.getName() + " was stunned!";
             }
 
 
@@ -320,34 +341,36 @@ public class NPC {
                 face.popMessage(playerFish.getName() +"'s health increased by 100!", s);
 
             }else if (s.equals(allItems[2])){
-                playerFish.attackChange(10);
-                face.popMessage(playerFish.getName() +"'s attack increased by 10 percent!", s);
+                playerFish.attackChange((int)playerFish.getScaledAttack());
+                face.popMessage(playerFish.getName() +"'s attack increased by 2 times!", s);
 
             }else if (s.equals(allItems[3])){
-                playerFish.attackChange(50);
-                face.popMessage(playerFish.getName() +"'s attack increased by 50 percent!", s);
+                playerFish.attackChange((int)playerFish.getScaledAttack()*5);
+                face.popMessage(playerFish.getName() +"'s attack increased by 5 times!", s);
 
             }else if (s.equals(allItems[4])){
                 playerFish.speedChange(5);
-                face.popMessage(playerFish.getName() +"'s speed increased by 5 percent!", s);
+                face.popMessage(playerFish.getName() +"'s speed increased by 5!", s);
 
             }else if (s.equals(allItems[5])){
                 playerFish.speedChange(25);
-                face.popMessage(playerFish.getName() +"'s speed increased by 25 percent!", s);
+                face.popMessage(playerFish.getName() +"'s speed increased by 25!", s);
 
             }
         }
         inventory.remove(s);
     }
 
-    private void statusEffect(Fish target,Move move){
+    private boolean statusEffect(Fish target,Move move){
         if((int) (Math.random()*100)<=move.getstunChance()){
             if (target == playerFish){
                 skip = true;
             }else{
                 eskip = true;
             }
+            return true;
         }
+        return false;
     }
 
 }
