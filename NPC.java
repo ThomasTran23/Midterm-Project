@@ -268,9 +268,15 @@ public class NPC {
         String message = "";
         if((int)(Math.random()*move.getAccuracy()+target.getScaledSpeed())>target.getScaledSpeed()-user.getScaledSpeed()||move.getAccuracy()>=200){
             if (move.getDamage()>0){
-                target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/50)));
+                double damagetaken =move.getDamage() * (1 + (user.getScaledAttack()/50));
+                if(damagetaken>0){
+                    target.takeDamage(damagetaken);
+                }else{
+                    target.takeDamage(1);
+                }
+                
 
-            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/50)) + " damage. They're now at " + target.getScaledHealth() + " health.";
+            message += move.getName() + " hit! " + target.getName() + " took " + damagetaken + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
             if (move.getDamage() < 0){
                 target.heal(move.getDamage()*-1);

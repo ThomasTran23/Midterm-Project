@@ -422,11 +422,11 @@ public class Fish {
     }
 
     public void attackChange(int multiplier){
-        this.scaledAttack += multiplier;
+        this.scaledAttack += multiplier/5;
     }
 
     public void speedChange(int multiplier){
-        this.scaledSpeed += multiplier;
+        this.scaledSpeed += multiplier/3;
     }
 
     public boolean levelUp(int level){
