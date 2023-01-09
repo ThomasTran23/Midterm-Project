@@ -176,6 +176,27 @@ public class Fish {
 
         allMoves.put("Hatchling", hatchMoves);
 
+                Move[] rcarpMoves = {new Move("Slap", 10.0, 87, 0, 0, false, 1, "The red fish slaps the target with it's tail, dealing some damage with high accuracy", false),
+        new Move("Punch", 10.0, 60, 0, 0, false, 1, "The red fish punches the target with high precision, dealing some damage", false),
+        new Move("Chomp", 15.0, 70, 0, 0, false, 1, "The red fish bites down on the target, dealing some damage", false),
+        new Move("Squirt", 2.0, 201, 0, 0, false, 1, "The red fish shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false)};
+
+        allMoves.put("Hatchling(Hatched_Red)", rcarpMoves);
+
+                        Move[] bcarpMoves = {new Move("Slap", 10.0, 87, 0, 0, false, 1, "The blue fish slaps the target with it's tail, dealing some damage with high accuracy", false),
+        new Move("Sob", 0, 200, -30, 0, false, 1, "The blue fish cries, the target feels bad and much less inclined to do damage ", false),
+        new Move("Splash", 15.0, 40, 0, 0, false, 1, "The blue fish tries to splash the target with its tail, doing a bit of damage and looking cute as a button", false),
+        new Move("Squirt", 2.0, 201, 0, 0, false, 1, "The blue fish shoots water in its mouth at the target with extreme precision, dealing minimal damage.", false)};
+
+        allMoves.put("Hatchling(Hatched_Blue)", bcarpMoves);
+
+                                Move[] gcarpMoves = {new Move("Rainbow Slap", 10.0, 87, 0, 0, false, 1, "The rainbow fish slaps the target with it's rainbow tail, dealing some damage with high accuracy", false),
+        new Move("Color Sob", 0, 200, -30, 0, false, 1, "The raibow fish cries rainbow tears, the target feels bad and much less inclined to do damage ", false),
+        new Move("Kaleidescope Punch", 10.0, 60, 0, 0, false, 1, "The rainbow fish punches the target with high precision and a colorful flash, dealing some damage", false),
+        new Move("Rainbow Chomp", 15.0, 70, 0, 0, false, 1, "The rainbow fish bites down on the target with a rainbow flash, dealing some damage", false)};
+
+        allMoves.put("Hatchling(Hatched_R)", gcarpMoves);
+
 
         Move[] jellyMoves =  {new Move("Sting", 10.0, 60, 0, 0, true, 30, "Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
         new Move("Whip", 5.0, 200, 0, 0, false, 0, "Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
@@ -356,15 +377,15 @@ public class Fish {
     }
 
     public double getScaledHealth(){
-        return scaledHealth;
+        return Math.floor(scaledHealth*10)/10;
     }
 
     public double getScaledAttack(){
-        return scaledAttack;
+        return Math.floor(scaledAttack*10)/10;
     }
     
     public double getScaledSpeed(){
-        return scaledSpeed;
+        return Math.floor(scaledSpeed*10)/10;
     }
 
     public Move[] getMoveList(){

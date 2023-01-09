@@ -35,7 +35,7 @@ public class Move {
                 }
             }
         }
-        return damage;
+        return Math.floor(damage*10)/10;
     }
 
     public int getAccuracy(){

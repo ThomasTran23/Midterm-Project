@@ -65,9 +65,9 @@ public class NPC {
             int n = face.popConfirm(
 
                 "\nLevel: " + playerFish.getLevel() +
-                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + playerFish.getHpIV() + "*" + playerFish.getLevel() + "[" + playerFish.getHpIV() * playerFish.getLevel() + "])" +
-                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + playerFish.getAtkIV() + "*" + playerFish.getLevel() + "[" + playerFish.getAtkIV() * playerFish.getLevel() + "])" +
-                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + playerFish.getSpdIV() + "*" + playerFish.getLevel() + "[" + playerFish.getSpdIV() * playerFish.getLevel() + "])"
+                "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + ")" +
+                "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + ")" +
+                "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + ")"
                 
                 ,playerFish.getName(),
                 options,
@@ -89,10 +89,9 @@ public class NPC {
             face.popMessage(
 
             "\nLevel: " + playerFish.getLevel() +
-            "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + " + " + playerFish.getHpIV() + "*" + playerFish.getLevel() + "[" + playerFish.getHpIV() * playerFish.getLevel() + "])" +
-            "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + " + " + playerFish.getAtkIV() + "*" + playerFish.getLevel() + "[" + playerFish.getAtkIV() * playerFish.getLevel() + "])" +
-            "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + " + " + playerFish.getSpdIV() + "*" + playerFish.getLevel() + "[" + playerFish.getSpdIV() * playerFish.getLevel() + "])"
-                
+            "\nHealth: " + playerFish.getScaledHealth() + " (" + playerFish.getHealth() + ")" +
+            "\nAttack: " + playerFish.getScaledAttack() + " (" + playerFish.getAttack() + ")" +
+            "\nSpeed: " + playerFish.getScaledSpeed() + " (" + playerFish.getSpeed() + ")"                
                 ,playerFish.getName()
                 
             );
@@ -196,7 +195,7 @@ public class NPC {
                 face.popMessage(num + num>0?item +"s":item + "recieved", "Item obtained!");
                 
             }else if(n == 2){
-                if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?5 + enemyFish.getLevel():4)){
+                if(playerFish.levelUp(enemyFish.getLevel()>playerFish.getLevel()?10 + enemyFish.getLevel():9)){
                     String[] confirmOptions = {"Evolve","Keep current fish for now", "Never evolve"};
                     Fish evolution = playerFish.evolve();
                     int confirm = face.popConfirm("Your fish is evolving!","Surprise!",confirmOptions,evolution.getType());
@@ -271,7 +270,7 @@ public class NPC {
             if (move.getDamage()>0){
                 target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/10)));
 
-            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/100)) + " damage. They're now at " + target.getScaledHealth() + " health.";
+            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/10)) + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
             if (move.getDamage() < 0){
                 target.heal(move.getDamage()*-1);
