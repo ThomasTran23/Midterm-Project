@@ -126,19 +126,16 @@ public class NPC {
         face.setImage(enemyFish.getType());
 
         active = true;
-        System.out.println(enemyFish.getName());
 
         if (playerFish.getScaledSpeed()<enemyFish.getScaledSpeed()){
             turn = false;
         }
         active = true;
         while (active){
-            System.out.println("next turn");
             if (turn&&skip==false){
                 playerMenu();
                 turn = !turn;
             }else if (skip){
-                System.out.println("skipped");
                 skip = !skip;
                 if (playerFish.getScaledHealth()>0){
                     turn = !turn;
@@ -149,7 +146,6 @@ public class NPC {
                 turn = !turn;
                 viewEnemyStats(enemyFish);
             }else if (eskip){
-                System.out.println("eskipped");
                 eskip = !eskip;
                 if (enemyFish.getScaledHealth()>0){
                     turn = !turn;
@@ -273,7 +269,7 @@ public class NPC {
         String message = "";
         if((int)(Math.random()*move.getAccuracy())>target.getScaledSpeed()-user.getScaledSpeed()||move.getAccuracy()>=200){
             if (move.getDamage()>0){
-                target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/100)));
+                target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/10)));
 
             message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/100)) + " damage. They're now at " + target.getScaledHealth() + " health.";
             }

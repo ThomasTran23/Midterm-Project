@@ -26,6 +26,15 @@ public class Move {
     }
 
     public double getDamage(){
+        if (damage>100){
+            if((int)(Math.random()*5)==0){
+                if (name == "Kaboom"){
+                    return (damage/100)*5;
+                }else{
+                    return (damage/100)*2;
+                }
+            }
+        }
         return damage;
     }
 
