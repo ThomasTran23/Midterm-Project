@@ -459,6 +459,7 @@ public class Fish {
             }
         }
         Fish evo = evolutions.get((int)(Math.random()*(evolutions.size())));
+        evo.levelUp(level);
         evo.scaleIV();
         evo.removeEvolve();
         return evo;

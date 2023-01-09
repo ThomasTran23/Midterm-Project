@@ -280,7 +280,7 @@ public class NPC {
                 }
                 
 
-            message += move.getName() + " hit! " + target.getName() + " took " + damagetaken + " damage. They're now at " + target.getScaledHealth() + " health.";
+            message += move.getName() + " hit! " + target.getName() + " took " + Math.floor(damagetaken*10)/10 + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
             if (move.getDamage() < 0){
                 target.heal(move.getDamage()*-1);
