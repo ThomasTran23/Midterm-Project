@@ -27,7 +27,7 @@ public class Fish {
 
     public String[] fishArray = {"Hatchling","Jellyfish","Turtle","Squibi","Octopus",
     "Hatchling(Hatched_Blue)","Hatchling(Hatched_Red)","Hatchling(Hatched_Rainbow)","Jellyfish(Scary)",
-    "Turttle(Fast)","Squibi(Adult)","Octopus(Blue-Ring)",
+    "Turtle(Fast)","Squibi(Adult)","Octopus(Blue-Ring)",
     "Hammerhead","Shark","Orca","Whale",
     "Hammerhead(Angry)","Shark(Angry)","Orca(Scary)","Whale(Scary)"};
 
@@ -43,12 +43,6 @@ public class Fish {
             this.threshold = level + (int)(Math.random()*20) + 10;
         }
         this.moveList = allMoves.get(this.type);
-        // for (Move m : getMoveList()){
-        //     System.out.println(m.getName());
-        // }
-        this.hpIV = (int)(Math.random()*10);
-        this.atkIV = (int)(Math.random()*10);
-        this.spdIV = (int)(Math.random()*10);
     }
 
     public Fish(String name, int health, double attack, double speed,int level){
@@ -62,22 +56,12 @@ public class Fish {
         this.evolved = false;
         this.level = level;
 
-        this.threshold = level + (int)(Math.random()*20) + 10;
+        this.scaleIV();
 
-        this.hpIV = (int)(Math.random()*10);
-        this.atkIV = (int)(Math.random()*10);
-        this.spdIV = (int)(Math.random()*10);
-
-        this.levelScale();
+        this.threshold = level /*+ (int)(Math.random()*20) + 10*/;
 
         this.moveList = allMoves.get(this.type);
 
-
-        
-
-        // for (Move m : getMoveList()){
-        //     System.out.println(m.getName());
-        // }
     }
 
     private void fishes_init(){
@@ -117,8 +101,8 @@ public class Fish {
             );
 
         fishes.put(
-            "Turttle(Fast)",
-            new Fish("Turttle(Fast)",50,5,7,true)
+            "Turtle(Fast)",
+            new Fish("Turtle(Fast)",50,5,7,true)
             );
 
         fishes.put(
@@ -245,7 +229,7 @@ public class Fish {
         Move[] boctopusMoves =  {new Move ("Sting", 10.0, 60, 0, 0, true, 30, "The blue-ring octopus stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The blue-ring octopus wraps it's arms around the target, dealing a small ammount of damage and incapacatating them", false),
         new Move("poison", 50.0, 20, 0, 0, false, 1, "The blue-ring octopus clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false),
-        new Move("Bite", (Math.random()*2)*20.0, 50, 0, 0, false, 1, "The blue-ring octopus chomps hard down on the target with it's beak, dealing good damage and sometimes lots", false)};
+        new Move("Bite", ((Math.random()*2)+1)*20.0, 50, 0, 0, false, 1, "The blue-ring octopus chomps hard down on the target with it's beak, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Octopus(Blue-Ring)", boctopusMoves); 
 
@@ -259,35 +243,35 @@ public class Fish {
         Move[] shammerheadMoves =  {new Move ("Hammer", 80.0, 40, 0, 0, true, 30, "The angry hammerhead whallops the target with it's large hammer, it isn't very precise but does high damage and the target may be too stunned to attack", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The angry hammerhead grabs the target in it's jaws, dealing a small ammount of damage and incapacatating them", false),
         new Move("Wave", 75.0, 40, 0, 0, false, 1, "The angry hammerhead causes a large wave towards the target, it might miss but it does high damage", false),
-        new Move("Bite", (Math.random()*2)*20.0, 50, 0, 0, false, 1, "The angry hammerhead chomps hard down on the target, dealing good damage and sometimes lots", false)};
+        new Move("Bite", ((Math.random()*2)+1)*20.0, 50, 0, 0, false, 1, "The angry hammerhead chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Hammerhead(Angry)", shammerheadMoves); 
 
         Move[] sharkMoves =  {new Move ("Punch", 10.0, 60, 0, 0, false, 1, "The shark punches the target with high precision, dealing some damage", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The shark grabs the target in it's jaws, dealing a small ammount of damage and incapacatating them", false),
         new Move("Wave", 75.0, 40, 0, 0, false, 1, "The shark causes a large wave towards the target, it might miss but it does high damage", false),
-        new Move("Bite", (Math.random()*2)*20.0, 50, 0, 0, false, 1, "The shark chomps hard down on the target, dealing good damage and sometimes lots", false)};
+        new Move("Bite", ((Math.random()*2)+1)*20.0, 50, 0, 0, false, 1, "The shark chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Shark", sharkMoves); 
 
         Move[] asharkMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The shark launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The angry shark grabs the target in it's jaws, dealing a small ammount of damage and incapacatating them", false),
         new Move("Wave", 75.0, 40, 0, 0, false, 1, "The angry shark causes a large wave towards the target, it might miss but it does high damage", false),
-        new Move("Bite", (Math.random()*2)*20.0, 50, 0, 0, false, 1, "The angry shark chomps hard down on the target, dealing good damage and sometimes lots", false)};
+        new Move("Bite", ((Math.random()*2)+1)*20.0, 50, 0, 0, false, 1, "The angry shark chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Shark(Angry)", asharkMoves); 
 
         Move[] orcaMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The orca launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
         new Move("Spout", 70.0, 201, 0, 0, false, 50, "The orca shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
         new Move("Wave", 75.0, 40, 0, 0, false, 1, "The orca causes a large wave towards the target, it might miss but it does high damage", false),
-        new Move("Bite", (Math.random()*2)*20.0, 50, 0, 0, false, 1, "The orca chomps hard down on the target, dealing good damage and sometimes lots", false)};
+        new Move("Bite", ((Math.random()*2)+1)*20.0, 50, 0, 0, false, 1, "The orca chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Orca", orcaMoves); 
 
         Move[] aorcaMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The angry orca launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
         new Move("Spout", 70.0, 201, 0, 0, false, 50, "The angry orca shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
         new Move("Tsunami", 75.0, 40, 0, 0, false, 1, "The angry orca causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
-        new Move("Devour", (Math.random()*2)*65.0, 50, 0, 0, false, 1, "The angry orca takes out chunks of the target with it's teeth, dealing high damage with a chance to do absurd damage", false)};
+        new Move("Devour", ((Math.random()*2)+1)*65.0, 50, 0, 0, false, 1, "The angry orca takes out chunks of the target with it's teeth, dealing high damage with a chance to do absurd damage", false)};
 
         allMoves.put("Orca(Scary)", aorcaMoves); 
 
@@ -315,7 +299,6 @@ public class Fish {
     public Fish(int level){
         this.fishes_init();
         this.moves_init();
-        int base = 0;
         int cap;
         if (level<=20){
             cap = 5;
@@ -328,7 +311,7 @@ public class Fish {
         }else{
             cap = fishArray.length;
         }
-        Fish temp = fishes.get(fishArray[(int)(Math.random()*cap) + base]);
+        Fish temp = fishes.get(fishArray[(int)(Math.random()*cap)]);
 
         this.name = temp.name;
         this.health = temp.health;
@@ -423,7 +406,7 @@ public class Fish {
     }
 
     public void speedChange(int multiplier){
-        this.scaledSpeed = this.scaledAttack * 1+ (multiplier/5);
+        this.scaledSpeed = this.scaledSpeed + multiplier;
     }
 
     public boolean levelUp(int level){
@@ -438,12 +421,15 @@ public class Fish {
     }
 
     public void levelScale(){
-        this.scaledHealth = health + (level*hpIV);
-        this.scaledAttack = attack + (level*atkIV);
-        this.scaledSpeed = speed + (level*spdIV);
+        this.scaledHealth = health + 3.5*Math.sqrt(level*hpIV);
+        this.scaledAttack = attack + 2*Math.sqrt(level*atkIV*attack);
+        this.scaledSpeed = speed + Math.sqrt(level*spdIV*speed);
     }
 
     public Fish evolve(){
+        if (fishes.get(type)==null){
+            fishes_init();
+        }
         ArrayList<Fish> evolutions = new ArrayList<Fish>();
         for (String s: fishArray){
             if (s.length()> this.type.length()){
@@ -452,13 +438,21 @@ public class Fish {
                 }
             }
         }
-        Fish evo = evolutions.get((int)(Math.random()*evolutions.size()-1));
-        evo.levelUp(this.level);
+        Fish evo = evolutions.get((int)(Math.random()*(evolutions.size())));
+        evo.scaleIV();
+        evo.removeEvolve();
         return evo;
 
     }
 
     public void removeEvolve(){
         this.evolved = true;
+    }
+
+    public void scaleIV(){
+        this.hpIV = (int)(Math.random()*5)+1;
+        this.atkIV = (int)(Math.random()*9)+1;
+        this.spdIV = (int)(Math.random()*3)+1;
+        this.levelScale();
     }
 }
