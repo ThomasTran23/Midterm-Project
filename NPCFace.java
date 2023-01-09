@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Toolkit;
 import java.io.File;
 // import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ import javax.swing.border.Border;
 // import javax.swing.text.JTextComponent;
 // import javax.swing.JTextField;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.geom.RectangularShape;
+import java.awt.geom.Rectangle2D;
+import java.awt.Rectangle;
+
 public class NPCFace extends JFrame implements ActionListener{
 
 private final int WIDTH = 1500; //400;
@@ -41,6 +47,7 @@ private String[] files;
 private Image[] allPics;
 private ArrayList<Image> pics;
 private Timer timer;
+private JFrame frame;
 
 private static final String imageBase = "./NPC_images/";
 
@@ -117,6 +124,11 @@ public void createGUI() {
       c.gridy = 2;
       c.ipady = 20;
       // contentPane.add(scroll, c);
+
+      frame = new JFrame();
+
+      frame.setLocation(0, HEIGHT/2);
+      frame.setVisible(true);
   
       setLocationRelativeTo(null);
       setVisible(true);
@@ -238,7 +250,7 @@ public class CentredBackgroundBorder implements Border {
   }
 
 public void popMessage(String message,String title){
-  JOptionPane.showMessageDialog(new JFrame(), 
+  JOptionPane.showMessageDialog(frame, 
     message, 
     title, 
     JOptionPane.PLAIN_MESSAGE);
@@ -252,7 +264,7 @@ public int popConfirm(String message,String title, String[] options,String image
     icon = null;
   }
   
-  int n = JOptionPane.showOptionDialog(new JFrame(),
+  int n = JOptionPane.showOptionDialog(frame,
     message,
     title,
     JOptionPane.YES_NO_CANCEL_OPTION,
@@ -271,7 +283,7 @@ public String popOption(String message, String title, String[] options,String de
   }
 
   String s = (String)JOptionPane.showInputDialog(
-  new JFrame(),
+  frame,
   message,
   title,
   JOptionPane.PLAIN_MESSAGE,
@@ -283,7 +295,7 @@ public String popOption(String message, String title, String[] options,String de
 
 public String popText(String message,String title, String defaultText, String errorMessage){
 String s = (String)JOptionPane.showInputDialog(
-  new JFrame(),
+  frame,
   message, title
   ,JOptionPane.PLAIN_MESSAGE,
   null,
@@ -295,6 +307,16 @@ String s = (String)JOptionPane.showInputDialog(
     popText(message, title, defaultText, errorMessage);
   }
   return s;
+}
+
+private void left(JFrame frame){
+    GraphicsConfiguration config = frame.getGraphicsConfiguration();
+    Rectangle bounds = config.getBounds();
+    Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(config);
+
+    int x = bounds.x + bounds.width - insets.left - frame.getWidth();
+    int y = imagePanel.getY();
+    frame.setLocation(x,y);
 }
 
   
