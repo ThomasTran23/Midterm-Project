@@ -97,7 +97,7 @@ public class Fish {
 
         fishes.put(
             "Turtle",
-            new Fish("Turtle",75,2,2,false)
+            new Fish("Turtle",75,1,1,false)
             );
 
         fishes.put(
