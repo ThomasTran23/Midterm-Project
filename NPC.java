@@ -270,7 +270,7 @@ public class NPC {
             if (move.getDamage()>0){
                 target.takeDamage(move.getDamage() * (1 + (user.getScaledAttack()/50)));
 
-            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/10)) + " damage. They're now at " + target.getScaledHealth() + " health.";
+            message += move.getName() + " hit! " + target.getName() + " took " +move.getDamage() * (1 + (user.getScaledAttack()/50)) + " damage. They're now at " + target.getScaledHealth() + " health.";
             }
             if (move.getDamage() < 0){
                 target.heal(move.getDamage()*-1);

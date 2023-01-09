@@ -195,8 +195,7 @@ public class Fish {
         new Move("Kaleidescope Punch", 10.0, 60, 0, 0, false, 1, "The rainbow fish punches the target with high precision and a colorful flash, dealing some damage", false),
         new Move("Rainbow Chomp", 15.0, 70, 0, 0, false, 1, "The rainbow fish bites down on the target with a rainbow flash, dealing some damage", false)};
 
-        allMoves.put("Hatchling(Hatched_R)", gcarpMoves);
-
+        allMoves.put("Hatchling(Hatched_Rainbow)", gcarpMoves);
 
         Move[] jellyMoves =  {new Move("Sting", 10.0, 60, 0, 0, true, 30, "Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
         new Move("Whip", 5.0, 200, 0, 0, false, 0, "Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
@@ -213,9 +212,9 @@ public class Fish {
         allMoves.put("Jellyfish(Scary)", jellysMoves); 
 
             Move[] shellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, false, 0, "The shelled turtle eats some seagrass and heals some HP", true),
-        new Move("Bonk", 15.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
+        new Move("Bonk", 10.0, 35, 0, 0, false, 0, "The shelled turtle tries to ram itself into the target, dealing high damage when it hits.", false),
         new Move("Spin", 0.0, 201, 5, 1, false, 1, "The shelled turtle spins in a circle, feeling quicker than before", true),
-        new Move("Punch", 10.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
+        new Move("Punch", 5.0, 60, 0, 0, false, 1, "The shelled turtle punches the target with high precision, dealing some damage", false)};
 
         allMoves.put("Turtle", shellMoves); 
 
