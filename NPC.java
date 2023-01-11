@@ -24,6 +24,21 @@ public class NPC {
         mainMenu();
     }
 
+    public void reset(){
+        face = new NPCFace();
+
+        playerFish = new Fish("Hatchling",30,1,3,0);
+
+        inventory.add("Pellet");
+
+        face.setImage("fisherman");
+        face.setBackground("");
+
+        face.popMessage("The Deep is calling.", "The Boatman");
+
+        mainMenu();
+    }
+
     public void mainMenu(){
 
         face.movePanel(true);
@@ -31,7 +46,8 @@ public class NPC {
         String[] menu = {
         "Cast Line",
         "View Fish",
-        "View Items"
+        "View Items",
+        "Reset"
         };
 
         face.setImage("fisherman");
@@ -50,6 +66,8 @@ public class NPC {
             viewStats();
         }else if(s.equals(menu[2])){
             viewInventory();
+        }else if(s.equals(menu[3])){
+            reset();
         }
         mainMenu();  
     }
