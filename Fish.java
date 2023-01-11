@@ -219,9 +219,9 @@ public class Fish {
         allMoves.put("Turtle", shellMoves); 
 
         Move[] nshellMoves =  {new Move("Eat Grass", -15.0, 201, 0, 0, false, 0, "The turtle eats some seagrass and heals some HP", true),
-        new Move("Bonk", 20.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
-        new Move("Chomp", 15.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
-        new Move("Hide", 15.0, 60, -15, 0, false, 1, "The turtle hides in it's shell, the target does less damage now", false)};
+        new Move("Bonk", 15.0, 35, 0, 0, false, 0, "The turtle tries to ram itself into the target, dealing high damage when it hits.", false),
+        new Move("Chomp", 10.0, 70, 0, 0, false, 1, "The turtle bites down on the target, dealing some damage", false),
+        new Move("Hide", 5.0, 60, -15, 0, false, 1, "The turtle hides in it's shell, the target does less damage now", false)};
 
         allMoves.put("Turtle(Fast)", nshellMoves); 
 
@@ -248,7 +248,7 @@ public class Fish {
 
         Move[] boctopusMoves =  {new Move ("Sting", 10.0, 60, 0, 0, true, 30, "The blue-ring octopus stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The blue-ring octopus wraps it's arms around the target, dealing a small ammount of damage and incapacatating them", false),
-        new Move("poison", 50.0, 20, 0, 0, false, 1, "The blue-ring octopus clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false),
+        new Move("Poison", 30.0, 20, 0, 0, false, 1, "The blue-ring octopus clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false),
         new Move("Bite", 2000.0, 50, 0, 0, false, 1, "The blue-ring octopus chomps hard down on the target with it's beak, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Octopus(Blue-Ring)", boctopusMoves); 
@@ -262,49 +262,49 @@ public class Fish {
 
         Move[] shammerheadMoves =  {new Move ("Hammer", 80.0, 40, 0, 0, true, 30, "The angry hammerhead whallops the target with it's large hammer, it isn't very precise but does high damage and the target may be too stunned to attack", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The angry hammerhead grabs the target in it's jaws, dealing a small ammount of damage and incapacatating them", false),
-        new Move("Wave", 75.0, 40, 0, 0, false, 1, "The angry hammerhead causes a large wave towards the target, it might miss but it does high damage", false),
+        new Move("Wave", 25.0, 40, 0, 0, false, 1, "The angry hammerhead causes a large wave towards the target, it might miss but it does high damage", false),
         new Move("Bite", 2000.0, 50, 0, 0, false, 1, "The angry hammerhead chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Hammerhead(Angry)", shammerheadMoves); 
 
         Move[] sharkMoves =  {new Move ("Punch", 10.0, 60, 0, 0, false, 1, "The shark punches the target with high precision, dealing some damage", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The shark grabs the target in it's jaws, dealing a small ammount of damage and incapacatating them", false),
-        new Move("Wave", 75.0, 40, 0, 0, false, 1, "The shark causes a large wave towards the target, it might miss but it does high damage", false),
+        new Move("Wave", 25.0, 40, 0, 0, false, 1, "The shark causes a large wave towards the target, it might miss but it does high damage", false),
         new Move("Bite", 2000.0, 50, 0, 0, false, 1, "The shark chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Shark", sharkMoves); 
 
         Move[] asharkMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The shark launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The angry shark grabs the target in it's jaws, dealing a small ammount of damage and incapacatating them", false),
-        new Move("Wave", 75.0, 40, 0, 0, false, 1, "The angry shark causes a large wave towards the target, it might miss but it does high damage", false),
+        new Move("Wave", 25.0, 40, 0, 0, false, 1, "The angry shark causes a large wave towards the target, it might miss but it does high damage", false),
         new Move("Bite", 2000.0, 50, 0, 0, false, 1, "The angry shark chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Shark(Angry)", asharkMoves); 
 
         Move[] orcaMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The orca launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
-        new Move("Spout", 70.0, 201, 0, 0, false, 50, "The orca shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
-        new Move("Wave", 75.0, 40, 0, 0, false, 1, "The orca causes a large wave towards the target, it might miss but it does high damage", false),
+        new Move("Spout", 10.0, 201, 0, 0, false, 50, "The orca shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
+        new Move("Wave", 25.0, 40, 0, 0, false, 1, "The orca causes a large wave towards the target, it might miss but it does high damage", false),
         new Move("Bite", 2000.0, 50, 0, 0, false, 1, "The orca chomps hard down on the target, dealing good damage and sometimes lots", false)};
 
         allMoves.put("Orca", orcaMoves); 
 
         Move[] aorcaMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The angry orca launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
-        new Move("Spout", 70.0, 201, 0, 0, false, 50, "The angry orca shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
-        new Move("Tsunami", 75.0, 40, 0, 0, false, 1, "The angry orca causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
+        new Move("Spout", 10.0, 201, 0, 0, false, 50, "The angry orca shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
+        new Move("Tsunami", 35.0, 40, 0, 0, false, 1, "The angry orca causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
         new Move("Devour", 6500.0, 50, 0, 0, false, 1, "The angry orca takes out chunks of the target with it's teeth, dealing high damage with a chance to do absurd damage", false)};
 
         allMoves.put("Orca(Scary)", aorcaMoves); 
 
-        Move[] whaleMoves =  {new Move ("Body Slam", 90.0, 70, 0, 0, true, 20, "The whale launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
-        new Move("Spout", 70.0, 201, 0, 0, false, 50, "The whale shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
-        new Move("Tsunami", 75.0, 40, 0, 0, false, 1, "The whale causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
+        Move[] whaleMoves =  {new Move ("Body Slam", 50.0, 70, 0, 0, true, 20, "The whale launches onto the target with high precision, dealing insane damage with a chance to stun the target", false),
+        new Move("Spout", 10.0, 201, 0, 0, false, 50, "The whale shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
+        new Move("Tsunami", 30.0, 25, 0, 0, false, 1, "The whale causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The whale grabs the target in it's massive mouth, dealing a small ammount of damage and incapacatating them", false)};
 
         allMoves.put("Whale", whaleMoves); 
 
         Move[] swhaleMoves =  {new Move ("Kaboom", 6500.0, 40, 0, 0, true, 20, "The scary whale launches onto the target, it's extreme weight causing anywhere from medium to indiscribably high damage", false),
-        new Move("Spout", 70.0, 201, 0, 0, false, 50, "The scary whale shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
-        new Move("Tsunami", 75.0, 40, 0, 0, false, 1, "The scary whale causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
+        new Move("Spout", 10.0, 201, 0, 0, false, 50, "The scary whale shoots the target with an extremely precise shot of water from it's blowhole dealing high damage", false),
+        new Move("Tsunami", 35.0, 25, 0, 0, false, 1, "The scary whale causes a 200ft tsunami wiping out everything in it's path, it might miss but it does absurd damage", false),
         new Move("Grab", 5.0, 60, 0, 0, true, 50, "The scary whale grabs the target in it's massive mouth, dealing a small ammount of damage and incapacatating them", false)};
 
         allMoves.put("Whale(Scary)", swhaleMoves); 
