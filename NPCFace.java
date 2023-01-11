@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 // import java.io.FilenameFilter;
 import javax.imageio.ImageIO;
-import java.io.File;
+// import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ private Image[] allPics;
 private ArrayList<Image> pics;
 private Timer timer;
 private JFrame frame;
-private Image[] ePics;
+// private Image[] ePics;
 // private ImageFlip flip = new ImageFlip();
 
 private static final String imageBase = "./NPC_images/";
