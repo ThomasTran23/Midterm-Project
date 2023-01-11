@@ -347,19 +347,19 @@ public class NPC {
 
             }else if (s.equals(allItems[2])){
                 playerFish.attackChange((int)playerFish.getScaledAttack());
-                face.popMessage(playerFish.getName() +"'s attack increased by 2 times!", s);
+                face.popMessage(playerFish.getName() +"'s attack increased!", s);
 
             }else if (s.equals(allItems[3])){
                 playerFish.attackChange((int)playerFish.getScaledAttack()*5);
-                face.popMessage(playerFish.getName() +"'s attack increased by 5 times!", s);
+                face.popMessage(playerFish.getName() +"'s attack increased by a ton!", s);
 
             }else if (s.equals(allItems[4])){
                 playerFish.speedChange(5);
-                face.popMessage(playerFish.getName() +"'s speed increased by 5!", s);
+                face.popMessage(playerFish.getName() +"'s speed increased!", s);
 
             }else if (s.equals(allItems[5])){
                 playerFish.speedChange(25);
-                face.popMessage(playerFish.getName() +"'s speed increased by 25!", s);
+                face.popMessage(playerFish.getName() +"'s speed increased by a ton!", s);
 
             }
         }

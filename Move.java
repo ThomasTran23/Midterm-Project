@@ -29,10 +29,12 @@ public class Move {
         if (damage>100){
             if((int)(Math.random()*5)==0){
                 if (name == "Kaboom"){
-                    return (damage/100)*5;
+                    return Math.floor((damage/100)*5*10)/10;
                 }else{
-                    return (damage/100)*2;
+                    return Math.floor((damage/100)*2*10)/10;
                 }
+            }else{
+                return (damage/100);
             }
         }
         return Math.floor(damage*10)/10;
