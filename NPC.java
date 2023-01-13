@@ -45,7 +45,8 @@ public class NPC {
         "Cast Line",
         "View Fish",
         "View Items",
-        "Reset"
+        "Reset",
+        "Exit"
         };
 
         face.setImage("fisherman");
@@ -65,8 +66,9 @@ public class NPC {
         }else if(s.equals(menu[2])){
             viewInventory();
         }else if(s.equals(menu[3])){
-            reset();
-            
+            reset();   
+        }else if(s.equals(menu[4])){
+            System.exit(0);
         }
         mainMenu();  
     }
