@@ -207,7 +207,7 @@ public class Fish {
         Move[] jellysMoves =  {new Move("Sting", 10.0, 60, 0, 0, true, 30, "Scary Jelly stings the target causing a small ammount of damage, but the target may be to stunned to attack", false),
         new Move("Whip", 5.0, 200, 0, 0, false, 0, "Scary Jelly swings its tentacles at the target with extreme precision, dealing a bit of damage.", false),
         new Move("Regneration", -15.0, 201, 0, 0, false, 1, "Scary Jelly regrows it's broken tentacles, healing a small ammount of HP", true),
-        new Move("poison", 50.0, 20, 0, 0, false, 1, "Scary Jelly clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false)};
+        new Move("poison", 35.0, 20, 0, 0, false, 1, "Scary Jelly clumsly attempts to stick all of its tentacles on the target, dealing lots of damage", false)};
 
         allMoves.put("Jellyfish(Scary)", jellysMoves); 
 
@@ -458,10 +458,14 @@ public class Fish {
                 }
             }
         }
-        Fish evo = evolutions.get((int)(Math.random()*(evolutions.size())));
-        evo.levelUp(level);
-        evo.scaleIV();
-        evo.removeEvolve();
+        Fish evo = this;
+        if (evolutions.size()>0){
+            evo = evolutions.get((int)(Math.random()*(evolutions.size())));
+            evo.levelUp(level);
+            evo.scaleIV();
+            evo.removeEvolve();
+        }
+        
         return evo;
 
     }
