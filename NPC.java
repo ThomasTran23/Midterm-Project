@@ -25,8 +25,6 @@ public class NPC {
     }
 
     public void reset(){
-        face = new NPCFace();
-
         playerFish = new Fish("Hatchling",30,1,3,0);
 
         inventory.add("Pellet");
@@ -68,6 +66,7 @@ public class NPC {
             viewInventory();
         }else if(s.equals(menu[3])){
             reset();
+            
         }
         mainMenu();  
     }
